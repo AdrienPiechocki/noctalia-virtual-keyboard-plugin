@@ -195,48 +195,11 @@ Loader {
                                 onPressed: function(mouse) {
                                     closeButton.pressed = true
                                     root.pluginApi.pluginSettings.enabled = false
+                                    pluginApi.saveSettings();
                                 }
                                 onReleased: {
                                     closeButton.pressed = false
                                 }
-                            }
-                        }
-
-                        NBox {
-                            id: settingsButton
-                            width: 50
-                            height: 50
-                            anchors.top: parent.top
-                            anchors.right: parent.right
-                            anchors.topMargin: 10
-                            anchors.rightMargin: 70
-                            property bool pressed: false
-                            color: pressed ? Color.mOnSurface : Color.mSurfaceVariant
-                            radius: 20
-                            NText {
-                                anchors.centerIn: parent
-                                text: ""
-                                font.weight: Style.fontWeightBold
-                                font.pointSize: Style.fontSizeL * fontScale
-                                color: settingsButton.pressed ? Color.mSurfaceVariant : Color.mOnSurface
-                            }
-
-                            MouseArea {
-                                anchors.fill: parent
-                                // onPressed: function(mouse) {
-                                //     settingsButton.pressed = true
-                                //     Settings.data.virtualKeyboard.enabled = false
-                                //     var settingsPanel = PanelService.getPanel("settingsPanel", screen)
-                                //     if (!settingsPanel.isPanelOpen){
-                                //         settingsPanel.toggle()
-                                //     }
-                                //     Qt.callLater(function() {
-                                //         settingsPanel.currentTabIndex = 18
-                                //     })
-                                // }
-                                // onReleased: {
-                                //     settingsButton.pressed = false
-                                // }
                             }
                         }
 
@@ -382,7 +345,10 @@ Loader {
                                                     runScript.running = true;
                                                 }
                                                 stdout: StdioCollector {
-                                                    onStreamFinished: root.pluginApi.pluginSettings.clicking = false
+                                                    onStreamFinished: {
+                                                        root.pluginApi.pluginSettings.clicking = false
+                                                        pluginApi.saveSettings();
+                                                    }
                                                 }
                                                 stderr: StdioCollector {
                                                     onStreamFinished: {
@@ -400,6 +366,7 @@ Loader {
                                                     }
                                                     else{
                                                         root.pluginApi.pluginSettings.clicking = true
+                                                        pluginApi.saveSettings();
                                                         if (modelData.key === "caps") {
                                                             root.capsON = !root.capsON
                                                         }
