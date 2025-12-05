@@ -6,7 +6,7 @@
       "name": "Virtual Keyboard",
       "version": "1.0.0",
       "author": "Adrien Piechocki",
-      "description": "A Virtual Keyboard plugin made for accessibility.",
+      "description": "A Virtual Keyboard plugin made for accessibility. REQUIRES ydotool",
       "repository": "https://github.com/AdrienPiechocki/noctalia-virtual-keyboard-plugin",
       "minNoctaliaVersion": "3.6.0",
       "license": "MIT"
