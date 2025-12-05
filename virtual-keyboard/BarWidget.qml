@@ -20,33 +20,16 @@ NIconButton {
                 pluginApi.pluginSettings.enabled = !pluginApi.pluginSettings.enabled;
                 pluginApi.saveSettings();
 
-                function findMainScreens() {
-                    let result = [];
+                function dump(obj, depth=0) {
+                    let indent = " ".repeat(depth * 2);
+                    console.log(indent, obj, "objectName:", obj.objectName);
 
-                    for (let key in PanelService.registeredPanels) {
-                        let panel = PanelService.registeredPanels[key];
-                        let p = panel;
-
-                        while (p && p.parent) {
-                            p = p.parent;
-
-                            // Vérifier le type ou l'objectName
-                            if (p.objectName && p.objectName.indexOf("MainScreen") !== -1) {
-                                if (result.indexOf(p) === -1)   // éviter les doublons
-                                    result.push(p);
-                            }
-                        }
+                    if (obj.children) {
+                        for (let c of obj.children) dump(c, depth + 1);
                     }
-
-                    return result;
                 }
 
-                // Exemple d'utilisation :
-                let screens = findMainScreens();
-                console.log(screens)
-                for (let i = 0; i < screens.length; i++) {
-                    console.log("MainScreen trouvé :", screens[i], "objectName:", screens[i].objectName);
-                }
+                dump(PluginService.rootObject);
 
                 // if (mainScreen) {
                 //     console.log(mainScreen.data)
