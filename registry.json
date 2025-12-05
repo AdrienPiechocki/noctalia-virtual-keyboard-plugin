@@ -8,7 +8,7 @@
       "author": "Adrien Piechocki",
       "description": "A Virtual Keyboard plugin made for accessibility.",
       "repository": "https://github.com/AdrienPiechocki/noctalia-virtual-keyboard-plugin",
-      "minNoctaliaVersion": "3.5.0",
+      "minNoctaliaVersion": "3.6.0",
       "license": "MIT"
     }
   ]
