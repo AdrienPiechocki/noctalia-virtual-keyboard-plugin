@@ -13,6 +13,17 @@ Loader {
 
     property var pluginApi: null
 
+    IpcHandler {
+        target: "plugin:virtual-keyboard"
+        function toggle() {
+            if (pluginApi) {
+                pluginApi.pluginSettings.enabled = !pluginApi.pluginSettings.enabled;
+                pluginApi.saveSettings();
+            }
+        }
+    }
+
+
     active: pluginApi ? root.pluginApi.pluginSettings.enabled || pluginApi.manifest.metadata.defaultSettings.enabled || false : false
 
     readonly property string typeKeyScript: Settings.configDir + "plugins/virtual-keyboard/type-key.py"
