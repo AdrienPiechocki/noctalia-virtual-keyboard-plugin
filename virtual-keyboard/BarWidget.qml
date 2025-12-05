@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
+import Quickshell.Io 
 import qs.Commons
 import qs.Modules.Bar.Extras
 import qs.Widgets
@@ -27,9 +28,17 @@ NIconButton {
   colorBorder: Color.transparent
   colorBorderHover: Color.transparent
 
+  Process {
+    id: resetScript
+    command: ["qs", "-p", Quickshell.shellDir, "ipc", "call", "plugin:virtual-keyboard", "reset"]
+  }
+
   onClicked: {
     if (pluginApi){
         pluginApi.pluginSettings.enabled = !pluginApi.pluginSettings.enabled;
+        if (pluginApi.pluginSettings.enabled === false) {
+          resetScript.running = true
+        }
         pluginApi.saveSettings();
         Logger.i("Keyboard", "Virtual Keyboard Toggled");
     }

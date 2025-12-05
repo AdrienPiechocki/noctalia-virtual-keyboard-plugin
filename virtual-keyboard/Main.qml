@@ -13,19 +13,31 @@ Loader {
 
     property var pluginApi: null
 
+    readonly property string typeKeyScript: Settings.configDir + "plugins/virtual-keyboard/type-key.py"
+
     IpcHandler {
         target: "plugin:virtual-keyboard"
         function toggle() {
             if (pluginApi) {
                 pluginApi.pluginSettings.enabled = !pluginApi.pluginSettings.enabled;
+                if (pluginApi.pluginSettings.enabled == false) {
+                    reset()
+                }
                 pluginApi.saveSettings();
+            }
+        }
+        function reset() {
+            if (pluginApi) {
+                resetScript.running = true
+                capsON = false
+                activeModifiers = {"shift": false, "alt": false, "super": false, "ctrl": false, "caps": false}
             }
         }
     }
 
     Process {
         id: resetScript
-        command: ["python", root.typeKeyScript, "reset"]
+        command: ["python", typeKeyScript, "reset"]
         stderr: StdioCollector {
             onStreamFinished: {
                 Logger.d("Keyboard", "modifier toggles reset")
@@ -33,18 +45,9 @@ Loader {
         }
     }
 
-    Component.onCompleted: {
-        resetScript.running = true
-        capsON = false
-        activeModifiers = {"shift": false, "alt": false, "super": false, "ctrl": false, "caps": false}
-    }
-
-
-
 
     active: pluginApi ? root.pluginApi.pluginSettings.enabled || pluginApi.manifest.metadata.defaultSettings.enabled || false : false
 
-    readonly property string typeKeyScript: Settings.configDir + "plugins/virtual-keyboard/type-key.py"
     
     property var qwerty: [
     // line 1
@@ -225,6 +228,9 @@ Loader {
                                 onPressed: function(mouse) {
                                     closeButton.pressed = true
                                     root.pluginApi.pluginSettings.enabled = false
+                                    root.resetScript.running = true
+                                    root.capsON = false
+                                    root.activeModifiers = {"shift": false, "alt": false, "super": false, "ctrl": false, "caps": false}
                                     pluginApi.saveSettings();
                                 }
                                 onReleased: {
