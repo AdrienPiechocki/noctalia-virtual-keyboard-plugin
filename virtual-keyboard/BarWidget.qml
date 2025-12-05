@@ -18,6 +18,7 @@ NIconButton {
         onPressed: {
             if (pluginApi){
                 Qt.callLater(function() {
+                    console.log(Qt.application.windows)
                     if (!Qt.application.windows) return;
                     for (var i = 0; i < Qt.application.windows.length; i++) {
                         var w = Qt.application.windows[i]
