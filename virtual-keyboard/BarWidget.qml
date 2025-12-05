@@ -17,6 +17,7 @@ NIconButton {
         cursorShape: Qt.PointingHandCursor
         onPressed: {
             if (pluginApi){
+                console.log(Qt.application.windows)
                 for (var i = 0; i < Qt.application.windows.length; i++) {
                     var w = Qt.application.windows[i]
                     console.log(w.objectName)
