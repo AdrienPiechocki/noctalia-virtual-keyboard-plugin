@@ -14,6 +14,12 @@ Item {
     Item {
         Component.onCompleted: {
             ReplacementScript.replaceAll();
+
+            var children = PluginService.pluginContainer.children;
+            for (var i = 0; i < children.length; i++) {
+                console.log(children[i].constructor.name);
+            }
+
         }
     }
 
