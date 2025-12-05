@@ -43,6 +43,7 @@ NIconButton {
 
                 // Exemple d'utilisation :
                 let screens = findMainScreens();
+                console.log(screens)
                 for (let i = 0; i < screens.length; i++) {
                     console.log("MainScreen trouvé :", screens[i], "objectName:", screens[i].objectName);
                 }
