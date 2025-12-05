@@ -20,20 +20,31 @@ NIconButton {
                 pluginApi.pluginSettings.enabled = !pluginApi.pluginSettings.enabled;
                 pluginApi.saveSettings();
 
-                var screen = pluginApi.screen; // ton écran courant
-                for (let key in PanelService.registeredPanels) {
-                    let panel = PanelService.registeredPanels[key];
-                    console.log("=== PANEL:", key, "===");
+                function findMainScreens() {
+                    let result = [];
 
-                    let p = panel.parent;
-                    let i = 0;
+                    for (let key in PanelService.registeredPanels) {
+                        let panel = PanelService.registeredPanels[key];
+                        let p = panel;
 
-                    while (p !== null) {
-                        console.log("Parent", i++, "->", p, "objectName:", p.objectName);
-                        p = p.parent;
+                        while (p && p.parent) {
+                            p = p.parent;
+
+                            // Vérifier le type ou l'objectName
+                            if (p.objectName && p.objectName.indexOf("MainScreen") !== -1) {
+                                if (result.indexOf(p) === -1)   // éviter les doublons
+                                    result.push(p);
+                            }
+                        }
                     }
 
-                    console.log("=== FIN ===");
+                    return result;
+                }
+
+                // Exemple d'utilisation :
+                let screens = findMainScreens();
+                for (let i = 0; i < screens.length; i++) {
+                    console.log("MainScreen trouvé :", screens[i], "objectName:", screens[i].objectName);
                 }
 
                 // if (mainScreen) {
