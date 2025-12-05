@@ -3,12 +3,15 @@ import Quickshell
 import Quickshell.Wayland
 import qs.Modules.MainScreen
 
-MainScreen {
-
+Item {
+    id: root
     property var pluginApi: null
     
-    Component.onCompleted: {
-        console.log("[PLUGIN] MainScreen intercepté :", objectName);
-        WlrLayershell.keyboardFocus = pluginApi.pluginSettings.clicking ? WlrKeyboardFocus.Exclusive : WlrKeyboardFocus.None;
+    MainScreen {
+        
+        Component.onCompleted: {
+            console.log("[PLUGIN] MainScreen intercepté");
+            WlrLayershell.keyboardFocus = root.pluginApi.pluginSettings.clicking ? WlrKeyboardFocus.Exclusive : WlrKeyboardFocus.None;
+        }
     }
 }
