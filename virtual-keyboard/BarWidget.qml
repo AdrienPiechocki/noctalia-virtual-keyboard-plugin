@@ -20,6 +20,7 @@ NIconButton {
                 var screen = pluginApi.screen; // ton écran courant
                 for (let key in PanelService.registeredPanels) {
                     var panel = PanelService.registeredPanels[key];
+                    console.log(panel.parent)
                     var mainScreen = panel.parent
                 }
                 if (mainScreen) {
