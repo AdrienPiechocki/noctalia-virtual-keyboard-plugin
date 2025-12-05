@@ -37,7 +37,7 @@ Loader {
 
     Process {
         id: resetScript
-        command: ["python", typeKeyScript, "reset"]
+        command: ["python", root.typeKeyScript, "reset"]
         stderr: StdioCollector {
             onStreamFinished: {
                 Logger.d("Keyboard", "modifier toggles reset")
