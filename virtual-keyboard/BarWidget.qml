@@ -3,7 +3,7 @@ import QtQuick.Layouts
 import Quickshell
 import qs.Commons
 import qs.Widgets
-import qs.Modules.MainSceen
+import qs.Modules.MainScreen
 
 NIconButton {
     id: root
