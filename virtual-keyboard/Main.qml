@@ -11,8 +11,8 @@ Loader {
     id: root
 
     property var pluginApi: null
-    
-    active: pluginApi.pluginSettings.enabled
+
+    active: true
     
     readonly property string typeKeyScript: './type-key.py'
     
@@ -113,7 +113,7 @@ Loader {
                 id: mainLoader
                 objectName: "loader"
                 asynchronous: false
-                active: pluginApi.pluginSettings.enabled
+                active: true
                 property ShellScreen loaderScreen: modelData
                 sourceComponent: PanelWindow {
                     id: virtualKeyboard
