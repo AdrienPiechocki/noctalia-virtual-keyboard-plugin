@@ -37,7 +37,7 @@ Loader {
 
     Process {
         id: resetScript
-        command: ["python", root.typeKeyScript, "reset"]
+        command: ["python", typeKeyScript, "reset"]
         stderr: StdioCollector {
             onStreamFinished: {
                 Logger.d("Keyboard", "modifier toggles reset")
@@ -228,7 +228,7 @@ Loader {
                                 onPressed: function(mouse) {
                                     closeButton.pressed = true
                                     root.pluginApi.pluginSettings.enabled = false
-                                    root.resetScript.running = true
+                                    resetScript.running = true
                                     root.capsON = false
                                     root.activeModifiers = {"shift": false, "alt": false, "super": false, "ctrl": false, "caps": false}
                                     pluginApi.saveSettings();
