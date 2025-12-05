@@ -3,6 +3,7 @@ import QtQuick.Layouts
 import Quickshell
 import qs.Commons
 import qs.Widgets
+import qs.Modules.MainSceen
 
 NIconButton {
     id: root
@@ -16,7 +17,8 @@ NIconButton {
         cursorShape: Qt.PointingHandCursor
         onPressed: {
             if (pluginApi){
-                console.log(root.parent.parent.parent.parent.parent.parent.parent)
+                console.log(root.parent.parent.parent.parent.parent.parent.parent.parent)
+                console.log(MainSceen.WlrLayershell.keyboardFocus)
                 pluginApi.pluginSettings.enabled = !pluginApi.pluginSettings.enabled;
                 pluginApi.saveSettings();
                 Logger.i("Keyboard", "Virtual Keyboard Toggled");
