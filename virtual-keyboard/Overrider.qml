@@ -8,7 +8,7 @@ MainScreen {
     Component.onCompleted: {
         console.log("[PLUGIN] MainScreen intercepté");
         WlrLayershell.keyboardFocus = WlrKeyboardFocus.None;
-        WlrLayershell.layer: WlrLayer.Bottom;
-        WlrLayershell.exclusionMode: ExclusionMode.Normal;
+        WlrLayershell.layer = WlrLayer.Bottom;
+        WlrLayershell.exclusionMode = ExclusionMode.Normal;
     }
 }
