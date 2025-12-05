@@ -22,20 +22,20 @@ ColumnLayout {
     }
 
     NComboBox {
-        label: PluginApi?.tr("settings.layout.label")
-        description: PluginApi?.tr("settings.layout.description")
+        label: pluginApi?.tr("settings.layout.label")
+        description: pluginApi?.tr("settings.layout.description")
         model: [
             {
             "key": "auto",
-            "name": PluginApi?.tr("options.layout.auto")
+            "name": pluginApi?.tr("options.layout.auto")
             },
             {
             "key": "qwerty",
-            "name": PluginApi?.tr("options.layout.qwerty")
+            "name": pluginApi?.tr("options.layout.qwerty")
             },
             {
             "key": "azerty",
-            "name": PluginApi?.tr("options.layout.azerty")
+            "name": pluginApi?.tr("options.layout.azerty")
             }
         ]
         currentKey: root.valueLayout
