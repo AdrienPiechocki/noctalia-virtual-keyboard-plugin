@@ -22,20 +22,20 @@ ColumnLayout {
     }
 
     NComboBox {
-        label: I18n.tr("settings.accessibility.virtual-keyboard.layout.label")
-        description: I18n.tr("settings.accessibility.virtual-keyboard.layout.description")
+        label: I18n.tr("settings.layout.label")
+        description: I18n.tr("settings.layout.description")
         model: [
             {
             "key": "auto",
-            "name": I18n.tr("options.accessibility.virtual-keyboard.layout.auto")
+            "name": I18n.tr("options.layout.auto")
             },
             {
             "key": "qwerty",
-            "name": I18n.tr("options.accessibility.virtual-keyboard.layout.qwerty")
+            "name": I18n.tr("options.layout.qwerty")
             },
             {
             "key": "azerty",
-            "name": I18n.tr("options.accessibility.virtual-keyboard.layout.azerty")
+            "name": I18n.tr("options.layout.azerty")
             }
         ]
         currentKey: root.valueLayout
