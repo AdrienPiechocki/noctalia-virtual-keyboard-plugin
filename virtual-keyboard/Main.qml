@@ -2,7 +2,6 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Io
-import Quickshell.Wayland
 import qs.Commons
 import qs.Widgets
 import qs.Services.Keyboard
@@ -137,9 +136,6 @@ Loader {
                         bottom: background.height * 54/100 + screen.y
                     }
                     color: Color.transparent
-                    exclusionMode: ExclusionMode.Ignore
-                    WlrLayershell.layer: WlrLayer.Top
-                    WlrLayershell.keyboardFocus: KeyboardFocus.None
                     property alias backgroundBox: background
                     
                     NBox {
