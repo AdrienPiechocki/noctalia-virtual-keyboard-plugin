@@ -13,10 +13,7 @@ Item {
     anchors.fill: parent
     Item {
         Component.onCompleted: {
-            // Remplacer toutes les MainScreen existantes
-            Qt.callLater(function() {
-                ReplacementScript.replaceAll();
-            });
+            console.log("yeepee")
         }
     }
 
