@@ -5,8 +5,5 @@ import qs.Modules.MainScreen
 
 MainScreen {
     
-    Component.onCompleted: {
-        console.log("[PLUGIN] MainScreen intercepté");
-        WlrLayershell.keyboardFocus = WlrKeyboardFocus.None;
-    }
+    WlrLayershell.keyboardFocus: WlrKeyboardFocus.None;
 }
