@@ -2,25 +2,10 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Io
-import Quickshell.Wayland
 import qs.Commons
 import qs.Widgets
 import qs.Services.Keyboard
 import qs.Services.UI
-import qs.Modules.MainScreen
-
-
-MainScreen {
-    // IMPORTANT : ne rien modifier à l'apparence
-    // On se contente d'observer
-
-    Component.onCompleted: {
-        console.log("[PLUGIN] MainScreen detected:", objectName);
-
-        // Ici tu as ACCÈS à cette instance
-        WlrLayershell.keyboardFocus = WlrKeyboardFocus.None;
-    }
-}
 
 Loader {
     id: root
