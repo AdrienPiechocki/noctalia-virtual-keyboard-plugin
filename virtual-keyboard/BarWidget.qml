@@ -21,7 +21,9 @@ NIconButton {
                     if (!Qt.application.windows) return;
                     for (var i = 0; i < Qt.application.windows.length; i++) {
                         var w = Qt.application.windows[i]
+                        console.log(w.objectName)
                         if (w.objectName && w.objectName.startsWith("MainScreen")) {
+                            console.log("BIG W")
                             w.WlrLayershell.keyboardFocus = pluginApi.pluginSettings.enabled 
                                 ? WlrKeyboardFocus.None 
                                 : (w.PanelService.openedPanel.exclusiveKeyboard ? WlrKeyboardFocus.Exclusive : WlrKeyboardFocus.OnDemand);
