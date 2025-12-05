@@ -11,8 +11,8 @@ ColumnLayout {
     property var pluginApi: null
 
     // Local state - track changes before saving
-    property bool valueEnabled: false
-    property bool valueClicking: false
+    property bool valueEnabled: pluginApi?.pluginSettings?.enabled || pluginApi?.manifest?.metadata?.defaultSettings?.enabled || false
+    property bool valueClicking: pluginApi?.pluginSettings?.clicking || pluginApi?.manifest?.metadata?.defaultSettings?.clicking || false
     property string valueLayout: pluginApi?.pluginSettings?.layout || pluginApi?.manifest?.metadata?.defaultSettings?.layout || "auto"
 
     spacing: Style.marginM
