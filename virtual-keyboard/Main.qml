@@ -88,13 +88,13 @@ Loader {
 
     property var layout: {
         if (pluginApi) {
-            if (pluginApi.pluginSettings.layout || pluginApi.manifest.metadata.defaultSettings.layout === "auto") {
+            if (pluginApi.pluginSettings.layout === "auto") {
                 return KeyboardLayoutService.currentLayout === "fr" ? azerty : qwerty
             }
-            else if (pluginApi.pluginSettings.layout || pluginApi.manifest.metadata.defaultSettings.layout === "azerty") {
+            else if (pluginApi.pluginSettings.layout === "azerty") {
                 return azerty
             }
-            else if (pluginApi.pluginSettings.layout || pluginApi.manifest.metadata.defaultSettings.layout === "qwerty") {
+            else if (pluginApi.pluginSettings.layout === "qwerty") {
                 return qwerty
             }
             else {
