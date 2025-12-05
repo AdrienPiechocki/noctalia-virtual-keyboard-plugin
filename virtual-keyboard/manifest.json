@@ -10,7 +10,6 @@
   "entryPoints": {
     "main": "Main.qml",
     "barWidget": "BarWidget.qml",
-    "panel": "Panel.qml",
     "settings": "Settings.qml"
   },
   "dependencies": {
