@@ -13,8 +13,8 @@ Loader {
     property var pluginApi: null
 
     active: pluginApi ? root.pluginApi.pluginSettings.enabled || pluginApi.manifest.metadata.defaultSettings.enabled || false : false
-    
-    readonly property string typeKeyScript: './type-key.py'
+
+    readonly property string typeKeyScript: Settings.configDir + "plugins/virtual-keyboard/type-key.py"
     
     property var qwerty: [
     // line 1
