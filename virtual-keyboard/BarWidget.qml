@@ -1,9 +1,9 @@
 import QtQuick
 import QtQuick.Layouts
+import QtQuick.Window
 import Quickshell
 import qs.Commons
 import qs.Widgets
-import qs.Modules.MainScreen
 
 NIconButton {
     id: root
@@ -17,8 +17,14 @@ NIconButton {
         cursorShape: Qt.PointingHandCursor
         onPressed: {
             if (pluginApi){
-                console.log(MainScreen, SmartPanel)
-                console.log(Object.keys(MainScreen))
+                for (var i = 0; i < Qt.application.windows.length; i++) {
+                    var w = Qt.application.windows[i]
+                    console.log(w.objectName)
+                    if (w.objectName && w.objectName.startsWith("MainScreen")) {
+                        w.WlrLayershell.keyboardFocus = pluginApi.pluginSettings.enabled ? WlrKeyboardFocus.None : w.PanelService.openedPanel.exclusiveKeyboard ? WlrKeyboardFocus.Exclusive : WlrKeyboardFocus.OnDemand;
+                        console.log("BIG W", w.objectName)
+                    }
+                }
                 pluginApi.pluginSettings.enabled = !pluginApi.pluginSettings.enabled;
                 pluginApi.saveSettings();
                 Logger.i("Keyboard", "Virtual Keyboard Toggled");
