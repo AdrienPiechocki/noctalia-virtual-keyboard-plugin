@@ -22,20 +22,33 @@ NIconButton {
 
                 var screen = pluginApi.screen; // ton écran courant
                 for (let key in PanelService.registeredPanels) {
-                    var panel = PanelService.registeredPanels[key];
-                    var mainScreen = panel.parent.parent;
-                }
-                if (mainScreen) {
-                    console.log(Object.keys(mainScreen))
-                    mainScreen.WlrLayershell.keyboardFocus = pluginApi.pluginSettings.enabled 
-                        ? pluginApi.pluginSettings.clicking ? WlrKeyboardFocus.Exclusive : WlrKeyboardFocus.None
-                        : !mainScreen.isPanelOpen ? WlrKeyboardFocus.None : mainScreen.PanelService.openedPanel.exclusiveKeyboard ? WlrKeyboardFocus.Exclusive : WlrKeyboardFocus.OnDemand;
+                    let panel = PanelService.registeredPanels[key];
+                    console.log("=== PANEL:", key, "===");
+
+                    let p = panel.parent;
+                    let i = 0;
+
+                    while (p !== null) {
+                        console.log("Parent", i++, "->", p, "objectName:", p.objectName);
+                        p = p.parent;
+                    }
+
+                    console.log("=== FIN ===");
                 }
 
-                if (pluginApi.pluginSettings.enabled) {
-                    console.log(mainScreen.WlrLayershell.keyboardFocus)
-                    console.log(WlrKeyboardFocus.None)
-                }
+                // if (mainScreen) {
+                //     console.log(mainScreen.data)
+                //     console.log(mainScreen.resources)
+                    
+                //     mainScreen.WlrLayershell.keyboardFocus = pluginApi.pluginSettings.enabled 
+                //         ? pluginApi.pluginSettings.clicking ? WlrKeyboardFocus.Exclusive : WlrKeyboardFocus.None
+                //         : !mainScreen.isPanelOpen ? WlrKeyboardFocus.None : mainScreen.PanelService.openedPanel.exclusiveKeyboard ? WlrKeyboardFocus.Exclusive : WlrKeyboardFocus.OnDemand;
+                // }
+
+                // if (pluginApi.pluginSettings.enabled) {
+                //     console.log(mainScreen.WlrLayershell.keyboardFocus)
+                //     console.log(WlrKeyboardFocus.None)
+                // }
 
                 Logger.i("Keyboard", "Virtual Keyboard Toggled");
             }
