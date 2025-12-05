@@ -17,21 +17,24 @@ NIconButton {
         cursorShape: Qt.PointingHandCursor
         onPressed: {
             if (pluginApi){
+                pluginApi.pluginSettings.enabled = !pluginApi.pluginSettings.enabled;
+                pluginApi.saveSettings();
+                
                 var screen = pluginApi.screen; // ton écran courant
                 for (let key in PanelService.registeredPanels) {
                     var panel = PanelService.registeredPanels[key];
                     var mainScreen = panel.parent.parent;
                 }
                 if (mainScreen) {
-                    console.log(mainScreen)
                     mainScreen.WlrLayershell.keyboardFocus = pluginApi.pluginSettings.enabled 
-                        ? pluginApi.pluginSettings.clicking ? WlrKeyboardFocus.Exclusive : WlrKeyboardFocus.None 
+                        ? pluginApi.pluginSettings.clicking ? WlrKeyboardFocus.Exclusive : WlrKeyboardFocus.None
                         : !mainScreen.isPanelOpen ? WlrKeyboardFocus.None : mainScreen.PanelService.openedPanel.exclusiveKeyboard ? WlrKeyboardFocus.Exclusive : WlrKeyboardFocus.OnDemand;
                 }
 
+                if (pluginApi.pluginSettings.enabled) {
+                    console.log("oui")
+                }
 
-                pluginApi.pluginSettings.enabled = !pluginApi.pluginSettings.enabled;
-                pluginApi.saveSettings();
                 Logger.i("Keyboard", "Virtual Keyboard Toggled");
             }
         }
