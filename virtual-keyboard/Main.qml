@@ -9,8 +9,10 @@ import qs.Services.UI
 
 Loader {
     id: root
-    active: anchors.fill: parent
+
     property var pluginApi: null
+    
+    active: pluginApi.pluginSettings.enabled
     
     readonly property string typeKeyScript: './type-key.py'
     
