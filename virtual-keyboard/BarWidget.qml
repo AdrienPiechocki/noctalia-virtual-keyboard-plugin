@@ -18,7 +18,7 @@ NIconButton {
         onPressed: {
             if (pluginApi){
                 console.log(root.parent.parent.parent.parent.parent.parent.parent.parent)
-                console.log(MainSceen.WlrLayershell.keyboardFocus)
+                console.log(MainScreen.WlrLayershell.keyboardFocus)
                 pluginApi.pluginSettings.enabled = !pluginApi.pluginSettings.enabled;
                 pluginApi.saveSettings();
                 Logger.i("Keyboard", "Virtual Keyboard Toggled");
