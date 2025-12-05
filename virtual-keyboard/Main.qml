@@ -9,7 +9,7 @@ Item {
     target: "plugin:virtual-keyboard"
     function toggle() {
       if (pluginApi){
-        pluginApi.openPanel(root.screen);
+        pluginApi.pluginSettings.enabled = !pluginApi.pluginSettings.enabled;
         Logger.i("Keyboard", "Virtual Keyboard Toggled");
       }
     }

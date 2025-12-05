@@ -7,8 +7,9 @@ import qs.Widgets
 import qs.Services.Keyboard
 import qs.Services.UI
 
-Item {
+Loader {
     id: root
+    active: anchors.fill: parent
     property var pluginApi: null
     
     readonly property string typeKeyScript: './type-key.py'
@@ -84,13 +85,13 @@ Item {
     ]
 
     property var layout: {
-        if (Settings.data.virtualKeyboard.layout === "auto") {
+        if (pluginApi?.pluginSettings?.layout === "auto") {
             return KeyboardLayoutService.currentLayout === "fr" ? azerty : qwerty
         }
-        if (Settings.data.virtualKeyboard.layout === "azerty") {
+        if (pluginApi?.pluginSettings?.layout === "azerty") {
             return azerty
         }
-        if (Settings.data.virtualKeyboard.layout === "qwerty") {
+        if (pluginApi?.pluginSettings?.layout === "qwerty") {
             return qwerty
         }
     }
@@ -101,7 +102,7 @@ Item {
 
     property var keyArray: []
 
-    Variants {
+    sourceComponent: Variants {
         id: allKeyboards
         model: Quickshell.screens
         delegate: Item {
@@ -110,7 +111,7 @@ Item {
                 id: mainLoader
                 objectName: "loader"
                 asynchronous: false
-                active: Settings.data.virtualKeyboard.enabled
+                active: pluginApi.pluginSettings.enabled
                 property ShellScreen loaderScreen: modelData
                 sourceComponent: PanelWindow {
                     id: virtualKeyboard
