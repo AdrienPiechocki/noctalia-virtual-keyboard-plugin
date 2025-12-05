@@ -6,7 +6,7 @@ import qs.Commons
 import qs.Widgets
 import qs.Services.Keyboard
 import qs.Services.UI
-import "ReplaceMainScreen.js" as ReplacementScript
+import "replacer.js" as ReplacementScript
 
 Item {
     property var pluginApi: null
