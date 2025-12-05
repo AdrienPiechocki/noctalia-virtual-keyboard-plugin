@@ -20,10 +20,10 @@ NIconButton {
                 var screen = pluginApi.screen; // ton écran courant
                 for (let key in PanelService.registeredPanels) {
                     var panel = PanelService.registeredPanels[key];
-                    console.log(panel.parent.parent.objectName)
-                    var mainScreen = panel.parent.parent
+                    var mainScreen = panel.parent.parent;
                 }
                 if (mainScreen) {
+                    console.log(mainScreen)
                     mainScreen.WlrLayershell.keyboardFocus = pluginApi.pluginSettings.enabled 
                         ? pluginApi.pluginSettings.clicking ? WlrKeyboardFocus.Exclusive : WlrKeyboardFocus.None 
                         : !mainScreen.isPanelOpen ? WlrKeyboardFocus.None : mainScreen.PanelService.openedPanel.exclusiveKeyboard ? WlrKeyboardFocus.Exclusive : WlrKeyboardFocus.OnDemand;
