@@ -12,7 +12,7 @@ Loader {
 
     property var pluginApi: null
 
-    active: pluginApi.pluginSettings.enabled || pluginApi.manifest.metadata.defaultSettings.enabled || false
+    active: pluginApi ? root.pluginApi.pluginSettings.enabled || pluginApi.manifest.metadata.defaultSettings.enabled || false : false
     
     readonly property string typeKeyScript: './type-key.py'
     
@@ -87,17 +87,19 @@ Loader {
     ]
 
     property var layout: {
-        if (pluginApi.pluginSettings.layout || pluginApi.manifest.metadata.defaultSettings.layout === "auto") {
-            return KeyboardLayoutService.currentLayout === "fr" ? azerty : qwerty
-        }
-        else if (pluginApi.pluginSettings.layout || pluginApi.manifest.metadata.defaultSettings.layout === "azerty") {
-            return azerty
-        }
-        else if (pluginApi.pluginSettings.layout || pluginApi.manifest.metadata.defaultSettings.layout === "qwerty") {
-            return qwerty
-        }
-        else {
-            return KeyboardLayoutService.currentLayout === "fr" ? azerty : qwerty
+        if (pluginApi) {
+            if (pluginApi.pluginSettings.layout || pluginApi.manifest.metadata.defaultSettings.layout === "auto") {
+                return KeyboardLayoutService.currentLayout === "fr" ? azerty : qwerty
+            }
+            else if (pluginApi.pluginSettings.layout || pluginApi.manifest.metadata.defaultSettings.layout === "azerty") {
+                return azerty
+            }
+            else if (pluginApi.pluginSettings.layout || pluginApi.manifest.metadata.defaultSettings.layout === "qwerty") {
+                return qwerty
+            }
+            else {
+                return KeyboardLayoutService.currentLayout === "fr" ? azerty : qwerty
+            }
         }
     }
 
@@ -116,7 +118,7 @@ Loader {
                 id: mainLoader
                 objectName: "loader"
                 asynchronous: false
-                active: root.pluginApi.pluginSettings.enabled || pluginApi.manifest.metadata.defaultSettings.enabled || false
+                active: pluginApi ? root.pluginApi.pluginSettings.enabled || pluginApi.manifest.metadata.defaultSettings.enabled || false : false
                 property ShellScreen loaderScreen: modelData
                 sourceComponent: PanelWindow {
                     id: virtualKeyboard
