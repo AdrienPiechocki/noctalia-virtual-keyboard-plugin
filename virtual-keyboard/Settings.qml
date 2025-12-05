@@ -49,6 +49,7 @@ ColumnLayout {
 
         // Update the plugin settings object
         pluginApi.pluginSettings.enabled = false
+        pluginApi.pluginSettings.clicking = false
         pluginApi.pluginSettings.layout = root.valueLayout;
 
         // Save to disk
