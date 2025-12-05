@@ -9,6 +9,7 @@ var replaceAll = function() {
             var child = root.children[i];
 
             if (child.constructor && child.constructor.name === "MainScreen") {
+                console.log("Remplacement d'une MainScreen trouvée :", child);
                 var parent = child.parent;
 
                 // Chemin vers ton plugin
