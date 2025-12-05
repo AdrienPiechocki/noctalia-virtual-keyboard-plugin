@@ -5,6 +5,7 @@ import Quickshell.Io
 import qs.Commons
 import qs.Modules.Bar.Extras
 import qs.Widgets
+import qs.Services.UI
 
 NIconButton {
   id: root
