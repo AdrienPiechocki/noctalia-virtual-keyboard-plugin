@@ -17,7 +17,7 @@ NIconButton {
         cursorShape: Qt.PointingHandCursor
         onPressed: {
             if (pluginApi){
-                console.log(MainScreen.keyboardFocus)
+                console.log(MainScreen, SmartPanel)
                 console.log(Object.keys(MainScreen))
                 pluginApi.pluginSettings.enabled = !pluginApi.pluginSettings.enabled;
                 pluginApi.saveSettings();
