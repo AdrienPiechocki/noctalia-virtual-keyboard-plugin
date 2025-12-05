@@ -8,7 +8,6 @@ import qs.Widgets
 NIconButton {
     id: root
     property var pluginApi: null
-    property ShellScreen screen
     property string widgetId: ""
     property string section: ""
     icon: "keyboard"
@@ -17,20 +16,16 @@ NIconButton {
         cursorShape: Qt.PointingHandCursor
         onPressed: {
             if (pluginApi){
-                Qt.callLater(function() {
-                    console.log(Qt.application.windows)
-                    if (!Qt.application.windows) return;
-                    for (var i = 0; i < Qt.application.windows.length; i++) {
-                        var w = Qt.application.windows[i]
-                        console.log(w.objectName)
-                        if (w.objectName && w.objectName.startsWith("MainScreen")) {
-                            console.log("BIG W")
-                            w.WlrLayershell.keyboardFocus = pluginApi.pluginSettings.enabled 
-                                ? WlrKeyboardFocus.None 
-                                : (w.PanelService.openedPanel.exclusiveKeyboard ? WlrKeyboardFocus.Exclusive : WlrKeyboardFocus.OnDemand);
-                        }
-                    }
-                });
+                var screen = pluginApi.screen; // ton écran courant
+                var mainScreen = PanelService.panels.find(p => p.screen === screen && p.objectName.startsWith("MainScreen"));
+                if (mainScreen) {
+                    mainScreen.WlrLayershell.keyboardFocus = pluginApi.pluginSettings.enabled 
+                        ? WlrKeyboardFocus.None 
+                        : mainScreen.PanelService.openedPanel.exclusiveKeyboard 
+                            ? WlrKeyboardFocus.Exclusive 
+                            : WlrKeyboardFocus.OnDemand;
+                }
+
 
                 pluginApi.pluginSettings.enabled = !pluginApi.pluginSettings.enabled;
                 pluginApi.saveSettings();
