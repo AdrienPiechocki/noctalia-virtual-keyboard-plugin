@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "plugins": [
+    {
+      "id": "virtual-keyboard",
+      "name": "Virtual Keyboard",
+      "version": "1.0.0",
+      "author": "Adrien Piechocki",
+      "description": "AA Virtual Keyboard plugin made for accessibility.",
+      "repository": "https://github.com/AdrienPiechocki/noctalia-virtual-keyboard-plugin",
+      "minNoctaliaVersion": "3.6.0",
+      "license": "MIT"
+    }
+  ]
+}
