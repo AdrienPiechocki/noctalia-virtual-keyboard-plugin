@@ -75,7 +75,7 @@ PanelWindow {
   readonly property var pluginPanel2Placeholder: pluginPanel2.panelRegion
 
   Component.onCompleted: {
-    Logger.d("MainScreenOverride", "Initialized for screen:", screen?.name, "- Dimensions:", screen?.width, "x", screen?.height, "- Position:", screen?.x, ",", screen?.y);
+    Logger.i("MainScreenOverride", "Initialized for screen:", screen?.name, "- Dimensions:", screen?.width, "x", screen?.height, "- Position:", screen?.x, ",", screen?.y);
   }
 
   // Wayland
