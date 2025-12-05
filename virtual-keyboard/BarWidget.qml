@@ -17,11 +17,11 @@ NIconButton {
         onPressed: {
             if (pluginApi){
                 if (pluginApi.pluginSettings.enabled) {
-                    pluginApi.closePanel(root.screen);
+                    //pluginApi.closePanel(root.screen);
                     pluginApi.pluginSettings.enabled = false;
                 }
                 else {
-                    pluginApi.openPanel(root.screen);
+                    //pluginApi.openPanel(root.screen);
                     pluginApi.pluginSettings.enabled = true;
                 }
                 pluginApi.saveSettings();
