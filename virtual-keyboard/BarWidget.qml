@@ -33,6 +33,7 @@ NIconButton {
 
                 if (pluginApi.pluginSettings.enabled) {
                     console.log(mainScreen.WlrLayershell.keyboardFocus)
+                    console.log(WlrKeyboardFocus.None)
                 }
 
                 Logger.i("Keyboard", "Virtual Keyboard Toggled");
