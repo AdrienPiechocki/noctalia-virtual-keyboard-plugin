@@ -26,9 +26,11 @@ NIconButton {
                 if (mainScreen) {
                     mainScreen.WlrLayershell.keyboardFocus = pluginApi.pluginSettings.enabled 
                         ? WlrKeyboardFocus.None 
+                        : !mainScreen.isPanelOpen 
+                        ? WlrKeyboardFocus.None 
                         : mainScreen.PanelService.openedPanel.exclusiveKeyboard 
-                            ? WlrKeyboardFocus.Exclusive 
-                            : WlrKeyboardFocus.OnDemand;
+                        ? WlrKeyboardFocus.Exclusive 
+                        : WlrKeyboardFocus.OnDemand;
                 }
 
 
