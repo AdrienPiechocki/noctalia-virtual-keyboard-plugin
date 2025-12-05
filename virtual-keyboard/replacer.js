@@ -1,4 +1,4 @@
-// Remplace toutes les MainScreen existantes dans un root donné
+// Fonction récursive pour remplacer toutes les MainScreen
 function replaceMainScreens(root) {
     if (!root || !root.children) return;
 
@@ -8,38 +8,38 @@ function replaceMainScreens(root) {
         if (child.constructor && child.constructor.name === "MainScreen") {
             var parent = child.parent;
 
+            // Chemin absolu vers ton plugin
+            var pluginPath = "file:///home/tonuser/.config/noctalia/plugins/virtual-keyboard/";
+
             // Créer l'override depuis le plugin
             var newScreen = Qt.createQmlObject(
-                'import "' + Qt.resolvedUrl(".") + '"; MainScreen {}',
+                'import "' + pluginPath + '"; MainScreen {}',
                 parent
             );
 
-            // Copier certaines propriétés si besoin
+            // Copier certaines propriétés si nécessaire
             if ("width" in child) newScreen.width = child.width;
             if ("height" in child) newScreen.height = child.height;
 
             // Supprimer l’ancienne instance
             child.destroy();
         } else {
-            // Parcours récursif pour enfants
+            // Parcours récursif pour les enfants
             replaceMainScreens(child);
         }
     }
 }
 
-// Fonction pour exécuter après que PluginService soit prêt
-function replaceAll() {
-    var root = null;
-
+// Attendre que PluginService.pluginContainer soit prêt
+function waitForContainerAndReplace() {
     if (typeof PluginService !== 'undefined' && PluginService.pluginContainer) {
-        root = PluginService.pluginContainer;
-    }
-
-    if (root) {
-        replaceMainScreens(root);
+        replaceMainScreens(PluginService.pluginContainer);
         console.log("Toutes les MainScreen existantes ont été remplacées !");
     } else {
-        console.log("Impossible de trouver le root pour remplacer MainScreen");
+        // Réessayer après un court délai
+        Qt.callLater(waitForContainerAndReplace);
     }
 }
-/*  */
+
+// Lancer la vérification
+waitForContainerAndReplace();

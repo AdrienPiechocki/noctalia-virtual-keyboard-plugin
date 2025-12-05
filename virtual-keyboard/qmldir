@@ -1,2 +1,2 @@
-module VirtualKeyboard
+module noctalia.plugin
 MainScreen 1.0 Overrider.qml
