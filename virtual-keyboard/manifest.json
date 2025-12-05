@@ -10,8 +10,7 @@
   "entryPoints": {
     "main": "Main.qml",
     "barWidget": "BarWidget.qml",
-    "settings": "Settings.qml",
-    "panel": "Overrider.qml"
+    "settings": "Settings.qml"
   },
   "dependencies": {
     "plugins": []
