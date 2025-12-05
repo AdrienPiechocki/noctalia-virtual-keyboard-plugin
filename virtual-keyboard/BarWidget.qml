@@ -19,7 +19,7 @@ NIconButton {
             if (pluginApi){
                 pluginApi.pluginSettings.enabled = !pluginApi.pluginSettings.enabled;
                 pluginApi.saveSettings();
-                
+
                 var screen = pluginApi.screen; // ton écran courant
                 for (let key in PanelService.registeredPanels) {
                     var panel = PanelService.registeredPanels[key];
@@ -32,7 +32,7 @@ NIconButton {
                 }
 
                 if (pluginApi.pluginSettings.enabled) {
-                    console.log("oui")
+                    console.log(mainScreen.WlrLayershell.keyboardFocus)
                 }
 
                 Logger.i("Keyboard", "Virtual Keyboard Toggled");
