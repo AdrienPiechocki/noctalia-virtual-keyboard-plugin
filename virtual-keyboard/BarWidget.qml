@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Layouts
-import QtQuick.Window
 import Quickshell
+import Quickshell.Wayland
 import qs.Commons
 import qs.Widgets
 import qs.Services.UI
