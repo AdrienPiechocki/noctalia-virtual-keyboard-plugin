@@ -16,7 +16,7 @@ NIconButton {
         cursorShape: Qt.PointingHandCursor
         onPressed: {
             if (pluginApi){
-                console.log(root.parent.keyboardFocus)
+                console.log(Object.keys(root.parent))
                 pluginApi.pluginSettings.enabled = !pluginApi.pluginSettings.enabled;
                 pluginApi.saveSettings();
                 Logger.i("Keyboard", "Virtual Keyboard Toggled");
