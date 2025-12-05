@@ -1,4 +1,4 @@
-// Fonction récursive pour remplacer toutes les MainScreen
+// Remplace toutes les MainScreen existantes dans un root donné
 function replaceMainScreens(root) {
     if (!root || !root.children) return;
 
@@ -10,7 +10,7 @@ function replaceMainScreens(root) {
 
             // Créer l'override depuis le plugin
             var newScreen = Qt.createQmlObject(
-                'import "file:///home/adrien/.config/noctalia/plugins/virtual-keyboard/"; MainScreen {}',
+                'import "' + Qt.resolvedUrl(".") + '"; MainScreen {}',
                 parent
             );
 
@@ -21,20 +21,18 @@ function replaceMainScreens(root) {
             // Supprimer l’ancienne instance
             child.destroy();
         } else {
-            // Parcours récursif
+            // Parcours récursif pour enfants
             replaceMainScreens(child);
         }
     }
 }
 
-// Exécution après le chargement du shell
-Qt.callLater(function() {
-    // Remplacer par le container du plugin si accessible
+// Fonction pour exécuter après que PluginService soit prêt
+function replaceAll() {
     var root = null;
-    if (typeof shellRoot !== 'undefined') {
-        root = shellRoot;
-    } else if (Qt.application) {
-        root = Qt.application;
+
+    if (typeof PluginService !== 'undefined' && PluginService.pluginContainer) {
+        root = PluginService.pluginContainer;
     }
 
     if (root) {
@@ -43,4 +41,5 @@ Qt.callLater(function() {
     } else {
         console.log("Impossible de trouver le root pour remplacer MainScreen");
     }
-});
+}
+/*  */
