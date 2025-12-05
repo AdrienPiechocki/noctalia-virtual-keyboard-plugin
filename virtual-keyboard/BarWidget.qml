@@ -4,7 +4,7 @@ import Quickshell
 import Quickshell.Wayland
 import qs.Commons
 import qs.Widgets
-import qs.Services.UI
+import qs.Services.Noctalia
 
 NIconButton {
     id: root
