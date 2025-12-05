@@ -4,7 +4,7 @@ import QtQuick.Window
 import Quickshell
 import qs.Commons
 import qs.Widgets
-import qs.Services
+import qs.Services.UI
 
 NIconButton {
     id: root
