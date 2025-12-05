@@ -17,15 +17,18 @@ NIconButton {
         cursorShape: Qt.PointingHandCursor
         onPressed: {
             if (pluginApi){
-                console.log(Qt.application.windows)
-                for (var i = 0; i < Qt.application.windows.length; i++) {
-                    var w = Qt.application.windows[i]
-                    console.log(w.objectName)
-                    if (w.objectName && w.objectName.startsWith("MainScreen")) {
-                        w.WlrLayershell.keyboardFocus = pluginApi.pluginSettings.enabled ? WlrKeyboardFocus.None : w.PanelService.openedPanel.exclusiveKeyboard ? WlrKeyboardFocus.Exclusive : WlrKeyboardFocus.OnDemand;
-                        console.log("BIG W", w.objectName)
+                Qt.callLater(function() {
+                    if (!Qt.application.windows) return;
+                    for (var i = 0; i < Qt.application.windows.length; i++) {
+                        var w = Qt.application.windows[i]
+                        if (w.objectName && w.objectName.startsWith("MainScreen")) {
+                            w.WlrLayershell.keyboardFocus = pluginApi.pluginSettings.enabled 
+                                ? WlrKeyboardFocus.None 
+                                : (w.PanelService.openedPanel.exclusiveKeyboard ? WlrKeyboardFocus.Exclusive : WlrKeyboardFocus.OnDemand);
+                        }
                     }
-                }
+                });
+
                 pluginApi.pluginSettings.enabled = !pluginApi.pluginSettings.enabled;
                 pluginApi.saveSettings();
                 Logger.i("Keyboard", "Virtual Keyboard Toggled");
