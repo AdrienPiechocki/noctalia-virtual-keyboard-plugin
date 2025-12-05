@@ -6,6 +6,7 @@ import qs.Commons
 import qs.Widgets
 import qs.Services.Keyboard
 import qs.Services.UI
+import qs
 
 Item {
     property var pluginApi: null
