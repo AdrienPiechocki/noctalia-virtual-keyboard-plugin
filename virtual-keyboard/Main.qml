@@ -6,7 +6,6 @@ import qs.Commons
 import qs.Widgets
 import qs.Services.Keyboard
 import qs.Services.UI
-import "file:///home/adrien/.config/noctalia/plugins/virtual-keyboard/" as Plugin
 
 Item {
     property var pluginApi: null
@@ -14,11 +13,26 @@ Item {
     Item {
         width: 200; height: 100
 
-        Component.onCompleted: {
-            console.log("Plugin.MainScreen exists?", !!Plugin.MainScreen)
+        function replaceMainScreens(root) {
+            if (!root || !root.children) return;
+            for (var i = 0; i < root.children.length; i++) {
+                var child = root.children[i];
+                if (child.constructor.name === "MainScreen") {
+                    var parent = child.parent;
+                    var index = parent.children.indexOf(child);
+
+                    child.destroy();  // supprime l'ancienne instance
+
+                    var newScreen = Qt.createQmlObject('import "file:///home/adrien/.config/noctalia/plugins/virtual-keyboard/"; MainScreen {}', parent);
+                    parent.children.splice(index, 0, newScreen); // optionnel, pour le remettre au même endroit
+                } else {
+                    replaceMainScreens(child); // récursion pour enfants
+                }
+            }
         }
 
-        Plugin.MainScreen { }
+        // Appel dans le shell
+        Component.onCompleted: replaceMainScreens(shellRoot)
     }
 
     Loader {
