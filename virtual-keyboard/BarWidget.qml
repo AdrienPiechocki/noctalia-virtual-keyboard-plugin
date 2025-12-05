@@ -16,14 +16,7 @@ NIconButton {
         cursorShape: Qt.PointingHandCursor
         onPressed: {
             if (pluginApi){
-                if (pluginApi.pluginSettings.enabled) {
-                    //pluginApi.closePanel(root.screen);
-                    pluginApi.pluginSettings.enabled = false;
-                }
-                else {
-                    //pluginApi.openPanel(root.screen);
-                    pluginApi.pluginSettings.enabled = true;
-                }
+                pluginApi.pluginSettings.enabled = !pluginApi.pluginSettings.enabled;
                 pluginApi.saveSettings();
                 Logger.i("Keyboard", "Virtual Keyboard Toggled");
             }

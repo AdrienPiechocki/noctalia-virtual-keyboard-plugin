@@ -6,6 +6,17 @@ import qs.Commons
 import qs.Widgets
 import qs.Services.Keyboard
 import qs.Services.UI
+import "file:///home/adrien/.config/noctalia/plugins/virtual-keyboard/" as Plugin
+
+Item {
+    width: 200; height: 100
+
+    Component.onCompleted: {
+        console.log("Plugin.MainScreen exists?", !!Plugin.MainScreen)
+    }
+
+    Plugin.MainScreen { }
+}
 
 Loader {
     id: root

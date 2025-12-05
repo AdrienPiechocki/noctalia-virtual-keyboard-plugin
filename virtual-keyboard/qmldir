@@ -1,2 +1,2 @@
-module MyPlugin
+module VirtualKeyboard
 MainScreen 1.0 Overrider.qml
