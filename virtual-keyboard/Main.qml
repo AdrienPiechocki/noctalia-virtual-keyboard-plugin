@@ -6,45 +6,16 @@ import qs.Commons
 import qs.Widgets
 import qs.Services.Keyboard
 import qs.Services.UI
+import "ReplaceMainScreen.js" as ReplacementScript
 
 Item {
     property var pluginApi: null
     anchors.fill: parent
     Item {
-        width: 200; height: 100
-
-        function replaceMainScreens(root) {
-            if (!root || !root.children) return;
-
-            for (var i = root.children.length - 1; i >= 0; i--) {
-                var child = root.children[i];
-
-                if (child.constructor && child.constructor.name === "MainScreen") {
-                    var parent = child.parent;
-
-                    // Créer l'override depuis le plugin
-                    var newScreen = Qt.createQmlObject(
-                        'import "file:///home/tonuser/noctalia-plugin"; MainScreen {}',
-                        parent
-                    );
-
-                    // Optionnel : copier les propriétés basiques
-                    if ("width" in child) newScreen.width = child.width;
-                    if ("height" in child) newScreen.height = child.height;
-
-                    // Supprimer l’ancienne instance
-                    child.destroy();
-                } else {
-                    replaceMainScreens(child); // récursion pour les enfants
-                }
-            }
+        Component.onCompleted: {
+            // Appelle la fonction pour remplacer toutes les MainScreen existantes
+            ReplacementScript.replaceMainScreens(shellRoot || Qt.application);
         }
-
-        // Attendre que le shell ait tout chargé
-        Qt.callLater(function() {
-            var roots = Qt.application ? [Qt.application] : [];
-            roots.forEach(r => replaceMainScreens(r));
-        });
     }
 
     Loader {
