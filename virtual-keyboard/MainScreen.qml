@@ -85,11 +85,12 @@ PanelWindow {
   WlrLayershell.keyboardFocus: {
     const p = PanelService.openedPanel;
     const plug = PluginRegistry.getPluginSettingsFile("virtual-keyboard");
-
+    console.log(plug["enabled"])
     if (!root.isPanelOpen || !p)
         return WlrKeyboardFocus.None;
 
     if (plug["enabled"])
+        console.log("OUI")
         return plug["clicking"] ? WlrKeyboardFocus.Exclusive : WlrKeyboardFocus.None;
 
     return p.exclusiveKeyboard ? WlrKeyboardFocus.Exclusive : WlrKeyboardFocus.onDemand;
