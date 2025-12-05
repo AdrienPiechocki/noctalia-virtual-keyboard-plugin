@@ -13,7 +13,7 @@ Item {
     anchors.fill: parent
     Item {
         Component.onCompleted: {
-            console.log("yeepee")
+            ReplacementScript.replaceAll();
         }
     }
 
