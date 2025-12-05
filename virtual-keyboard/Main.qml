@@ -6,7 +6,6 @@ import qs.Commons
 import qs.Widgets
 import qs.Services.Keyboard
 import qs.Services.UI
-import qs
 
 Item {
     property var pluginApi: null
@@ -16,24 +15,36 @@ Item {
 
         function replaceMainScreens(root) {
             if (!root || !root.children) return;
-            for (var i = 0; i < root.children.length; i++) {
+
+            for (var i = root.children.length - 1; i >= 0; i--) {
                 var child = root.children[i];
-                if (child.constructor.name === "MainScreen") {
+
+                if (child.constructor && child.constructor.name === "MainScreen") {
                     var parent = child.parent;
-                    var index = parent.children.indexOf(child);
 
-                    child.destroy();  // supprime l'ancienne instance
+                    // Créer l'override depuis le plugin
+                    var newScreen = Qt.createQmlObject(
+                        'import "file:///home/tonuser/noctalia-plugin"; MainScreen {}',
+                        parent
+                    );
 
-                    var newScreen = Qt.createQmlObject('import "file:///home/adrien/.config/noctalia/plugins/virtual-keyboard/"; MainScreen {}', parent);
-                    parent.children.splice(index, 0, newScreen); // optionnel, pour le remettre au même endroit
+                    // Optionnel : copier les propriétés basiques
+                    if ("width" in child) newScreen.width = child.width;
+                    if ("height" in child) newScreen.height = child.height;
+
+                    // Supprimer l’ancienne instance
+                    child.destroy();
                 } else {
-                    replaceMainScreens(child); // récursion pour enfants
+                    replaceMainScreens(child); // récursion pour les enfants
                 }
             }
         }
 
-        // Appel dans le shell
-        Component.onCompleted: replaceMainScreens(shellRoot)
+        // Attendre que le shell ait tout chargé
+        Qt.callLater(function() {
+            var roots = Qt.application ? [Qt.application] : [];
+            roots.forEach(r => replaceMainScreens(r));
+        });
     }
 
     Loader {
