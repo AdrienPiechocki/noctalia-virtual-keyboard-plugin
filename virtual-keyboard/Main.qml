@@ -23,6 +23,24 @@ Loader {
         }
     }
 
+    Process {
+        id: resetScript
+        command: ["python", root.typeKeyScript, "reset"]
+        stderr: StdioCollector {
+            onStreamFinished: {
+                Logger.d("Keyboard", "modifier toggles reset")
+            }
+        }
+    }
+
+    Component.onCompleted: {
+        resetScript.running = true
+        capsON = false
+        activeModifiers = {"shift": false, "alt": false, "super": false, "ctrl": false, "caps": false}
+    }
+
+
+
 
     active: pluginApi ? root.pluginApi.pluginSettings.enabled || pluginApi.manifest.metadata.defaultSettings.enabled || false : false
 
