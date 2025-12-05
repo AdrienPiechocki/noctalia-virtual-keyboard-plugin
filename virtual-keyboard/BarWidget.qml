@@ -17,7 +17,7 @@ NIconButton {
         onPressed: {
             if (pluginApi){
                 pluginApi?.pluginSettings?.enabled = !pluginApi?.pluginSettings?.enabled;
-                Logger.i("Keyboard", "Virtual Keyboard Toggled");
+                Logger.i("Keyboard", pluginApi?.pluginSettings?.enabled);
             }
         }
     }
