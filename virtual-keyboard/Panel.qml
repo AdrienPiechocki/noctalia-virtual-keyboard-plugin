@@ -187,7 +187,7 @@ Loader {
                                 anchors.fill: parent
                                 onPressed: function(mouse) {
                                     closeButton.pressed = true
-                                    Settings.data.virtualKeyboard.enabled = false
+                                    pluginApi.pluginSettings.enabled = false
                                 }
                                 onReleased: {
                                     closeButton.pressed = false
@@ -216,20 +216,20 @@ Loader {
 
                             MouseArea {
                                 anchors.fill: parent
-                                onPressed: function(mouse) {
-                                    settingsButton.pressed = true
-                                    Settings.data.virtualKeyboard.enabled = false
-                                    var settingsPanel = PanelService.getPanel("settingsPanel", screen)
-                                    if (!settingsPanel.isPanelOpen){
-                                        settingsPanel.toggle()
-                                    }
-                                    Qt.callLater(function() {
-                                        settingsPanel.currentTabIndex = 18
-                                    })
-                                }
-                                onReleased: {
-                                    settingsButton.pressed = false
-                                }
+                                // onPressed: function(mouse) {
+                                //     settingsButton.pressed = true
+                                //     Settings.data.virtualKeyboard.enabled = false
+                                //     var settingsPanel = PanelService.getPanel("settingsPanel", screen)
+                                //     if (!settingsPanel.isPanelOpen){
+                                //         settingsPanel.toggle()
+                                //     }
+                                //     Qt.callLater(function() {
+                                //         settingsPanel.currentTabIndex = 18
+                                //     })
+                                // }
+                                // onReleased: {
+                                //     settingsButton.pressed = false
+                                // }
                             }
                         }
 
@@ -375,7 +375,7 @@ Loader {
                                                     runScript.running = true;
                                                 }
                                                 stdout: StdioCollector {
-                                                    onStreamFinished: Settings.data.virtualKeyboard.clicking = false
+                                                    onStreamFinished: pluginApi.pluginSettings.clicking = false
                                                 }
                                                 stderr: StdioCollector {
                                                     onStreamFinished: {
@@ -392,7 +392,7 @@ Loader {
                                                         toggleModifier(modelData.key)
                                                     }
                                                     else{
-                                                        Settings.data.virtualKeyboard.clicking = true
+                                                        pluginApi.pluginSettings.clicking = true
                                                         if (modelData.key === "caps") {
                                                             root.capsON = !root.capsON
                                                         }

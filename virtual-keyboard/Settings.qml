@@ -11,7 +11,9 @@ ColumnLayout {
     property var pluginApi: null
 
     // Local state - track changes before saving
-    property color valueLayout: pluginApi?.pluginSettings?.layout || pluginApi?.manifest?.metadata?.defaultSettings?.layout || "auto"
+    property bool valueEnabled: false
+    property bool valueClicking: false
+    property string valueLayout: pluginApi?.pluginSettings?.layout || pluginApi?.manifest?.metadata?.defaultSettings?.layout || "auto"
 
     spacing: Style.marginM
 
@@ -48,8 +50,8 @@ ColumnLayout {
         }
 
         // Update the plugin settings object
-        pluginApi.pluginSettings.enabled = false
-        pluginApi.pluginSettings.clicking = false
+        pluginApi.pluginSettings.enabled = root.valueEnabled
+        pluginApi.pluginSettings.clicking = root.valueClicking
         pluginApi.pluginSettings.layout = root.valueLayout;
 
         // Save to disk
