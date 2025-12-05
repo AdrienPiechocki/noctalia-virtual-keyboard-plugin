@@ -88,7 +88,7 @@ Loader {
 
     property var layout: {
         if (pluginApi.pluginSettings.layout || pluginApi.manifest.metadata.defaultSettings.layout === "auto") {
-            return KeyboardLayoutService.currentLayout === "fr"  azerty : qwerty
+            return KeyboardLayoutService.currentLayout === "fr" ? azerty : qwerty
         }
         else if (pluginApi.pluginSettings.layout || pluginApi.manifest.metadata.defaultSettings.layout === "azerty") {
             return azerty
@@ -97,7 +97,7 @@ Loader {
             return qwerty
         }
         else {
-            return KeyboardLayoutService.currentLayout === "fr"  azerty : qwerty
+            return KeyboardLayoutService.currentLayout === "fr" ? azerty : qwerty
         }
     }
 
