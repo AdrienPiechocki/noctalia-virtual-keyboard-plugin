@@ -10,7 +10,7 @@
   },
   "options": {
     "layout": {
-      "auto": "auto (QWERTY)",
+      "auto": "auto (AZERTY)",
       "qwerty": "QWERTY",
       "azerty": "AZERTY"
     }
