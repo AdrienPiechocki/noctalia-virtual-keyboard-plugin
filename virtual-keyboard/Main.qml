@@ -12,7 +12,7 @@ Loader {
 
     property var pluginApi: null
 
-    active: true
+    active: pluginApi?.pluginSettings?.enabled || pluginApi?.manifest?.metadata?.defaultSettings?.enabled || false
     
     readonly property string typeKeyScript: './type-key.py'
     
@@ -87,14 +87,17 @@ Loader {
     ]
 
     property var layout: {
-        if (pluginApi?.pluginSettings?.layout === "auto") {
+        if (pluginApi?.pluginSettings?.layout || pluginApi?.manifest?.metadata?.defaultSettings?.layout === "auto") {
             return KeyboardLayoutService.currentLayout === "fr" ? azerty : qwerty
         }
-        if (pluginApi?.pluginSettings?.layout === "azerty") {
+        else if (pluginApi?.pluginSettings?.layout || pluginApi?.manifest?.metadata?.defaultSettings?.layout === "azerty") {
             return azerty
         }
-        if (pluginApi?.pluginSettings?.layout === "qwerty") {
+        else if (pluginApi?.pluginSettings?.layout || pluginApi?.manifest?.metadata?.defaultSettings?.layout === "qwerty") {
             return qwerty
+        }
+        else {
+            return KeyboardLayoutService.currentLayout === "fr" ? azerty : qwerty
         }
     }
 
@@ -113,7 +116,7 @@ Loader {
                 id: mainLoader
                 objectName: "loader"
                 asynchronous: false
-                active: true
+                active: root.pluginApi?.pluginSettings?.enabled || pluginApi?.manifest?.metadata?.defaultSettings?.enabled || false
                 property ShellScreen loaderScreen: modelData
                 sourceComponent: PanelWindow {
                     id: virtualKeyboard
@@ -189,7 +192,7 @@ Loader {
                                 anchors.fill: parent
                                 onPressed: function(mouse) {
                                     closeButton.pressed = true
-                                    pluginApi.pluginSettings.enabled = false
+                                    root.pluginApi?.pluginSettings?.enabled = false
                                 }
                                 onReleased: {
                                     closeButton.pressed = false
@@ -377,7 +380,7 @@ Loader {
                                                     runScript.running = true;
                                                 }
                                                 stdout: StdioCollector {
-                                                    onStreamFinished: pluginApi.pluginSettings.clicking = false
+                                                    onStreamFinished: root.pluginApi?.pluginSettings?.clicking = false
                                                 }
                                                 stderr: StdioCollector {
                                                     onStreamFinished: {
@@ -394,7 +397,7 @@ Loader {
                                                         toggleModifier(modelData.key)
                                                     }
                                                     else{
-                                                        pluginApi.pluginSettings.clicking = true
+                                                        root.pluginApi?.pluginSettings?.clicking = true
                                                         if (modelData.key === "caps") {
                                                             root.capsON = !root.capsON
                                                         }
