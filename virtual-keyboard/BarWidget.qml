@@ -18,7 +18,11 @@ NIconButton {
         onPressed: {
             if (pluginApi){
                 var screen = pluginApi.screen; // ton écran courant
-                var mainScreen = PanelService.registeredPanels[0].parent.parent;
+                console.log(PanelService.registeredPanels)
+                console.log(PanelService.registeredPanels[0])
+                console.log(PanelService.registeredPanels[0][0])
+                
+                var mainScreen = PanelService.registeredPanels.find(p => p.screen === screen && p.objectName.startsWith("MainScreen"));
                 if (mainScreen) {
                     mainScreen.WlrLayershell.keyboardFocus = pluginApi.pluginSettings.enabled 
                         ? WlrKeyboardFocus.None 
