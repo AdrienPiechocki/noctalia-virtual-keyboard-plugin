@@ -91,24 +91,26 @@ Loader {
         }
     }
 
-    property var currentLayout: {
+    property var currentLayout: {}
+    
+    onLayoutsChanged: {
         if (layouts !== []) {
             if (pluginApi) {
                 for (let i = 0; i < layouts.count; i ++) {
                     for (let layout in layouts[i]) {
                         if (pluginApi.pluginSettings.layout === layout) {
-                            return layouts[i][layout]
+                            currentLayout = layouts[i][layout]
                         }
                     }
                 }
-                return {}
+                currentLayout = {}
             }
             else {
-                return {}
+                currentLayout = {}
             }
         }
         else {
-            return {}
+            currentLayout = {}
         }
     }
 
