@@ -94,21 +94,14 @@ Loader {
     property var currentLayout: {
         if (layouts !== []) {
             if (pluginApi) {
-                if (pluginApi.pluginSettings.layout === "auto") {
-                    return KeyboardLayoutService.currentLayout === "fr" ? layouts.azerty : layouts.qwerty
+                for (let i = 0; i < layouts.count; i ++) {
+                    for (let layout in layouts[i]) {
+                        if (pluginApi.pluginSettings.layout === layout) {
+                            return layouts[i][layout]
+                        }
+                    }
                 }
-                else if (pluginApi.pluginSettings.layout === "azerty") {
-                    return layouts.azerty
-                }
-                else if (pluginApi.pluginSettings.layout === "qwerty") {
-                    return layouts.qwerty
-                }
-                else if (pluginApi.pluginSettings.layout === "dvorak") {
-                    return layouts.dvorak
-                }
-                else {
-                    return KeyboardLayoutService.currentLayout === "fr" ? layouts.azerty : layouts.qwerty
-                }
+                return {}
             }
             else {
                 return {}
@@ -396,7 +389,7 @@ Loader {
                                                                 root.keyArray.push(k);
                                                             }
                                                         }
-                                                        root.keyArray.unshift(root.layout === root.azerty ? "azerty" : "qwerty")
+                                                        root.keyArray.unshift(root.currentLayout === root.azerty ? "azerty" : "qwerty")
                                                         runScript.startWithKeys(keyArray)
                                                     }
                                                     Logger.d(modelData.key.toString())

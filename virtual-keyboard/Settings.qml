@@ -25,10 +25,6 @@ ColumnLayout {
         description: pluginApi?.tr("settings.layout.description")
         model: [
             {
-            "key": "auto",
-            "name": pluginApi?.tr("options.layout.auto")
-            },
-            {
             "key": "qwerty",
             "name": pluginApi?.tr("options.layout.qwerty")
             },
