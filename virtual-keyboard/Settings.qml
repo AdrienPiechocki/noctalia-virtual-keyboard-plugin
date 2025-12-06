@@ -15,7 +15,7 @@ ColumnLayout {
 
     // Local state - track changes before saving
     property bool valueEnabled: pluginApi?.pluginSettings?.enabled || pluginApi?.manifest?.metadata?.defaultSettings?.enabled || false
-    property string valueLayout: pluginApi?.pluginSettings?.layout || pluginApi?.manifest?.metadata?.defaultSettings?.layout || "auto"
+    property string valueLayout: pluginApi?.pluginSettings?.layout || pluginApi?.manifest?.metadata?.defaultSettings?.layout || "qwerty"
 
     spacing: Style.marginM
 
