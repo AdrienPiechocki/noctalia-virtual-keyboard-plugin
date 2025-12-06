@@ -89,13 +89,12 @@ Loader {
                             for (let i = 0; i < layouts.length; i ++) {
                                 for (let layout in layouts[i]) {
                                     if (pluginApi.pluginSettings.layout == layout || pluginApi.manifest.metadata.defaultSettings.layout == layout) {
-                                        console.log(layouts[i][layout])
+                                        console.log(layout)
                                         currentLayout = layouts[i][layout]
                                     }
                                 }
                             }
                         }
-                        
                     } catch(e) {
                         Logger.e("Keyboard", "JSON Error in", model.fileName, ":", e)
                     }
