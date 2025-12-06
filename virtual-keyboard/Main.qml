@@ -77,10 +77,10 @@ Loader {
             
             FileView {
                 path: model.filePath
-
+                
                 onLoaded: {
                     try {
-                        let data = JSON.parse(text)
+                        let data = JSON.parse(text())
                         layouts[model.fileName] = data.layout
                     } catch(e) {
                         console.error("JSON Error in", model.fileName, ":", e)
