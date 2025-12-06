@@ -48,7 +48,7 @@ Loader {
 
     active: pluginApi ? root.pluginApi.pluginSettings.enabled || pluginApi.manifest.metadata.defaultSettings.enabled || false : false
     
-    Component.onCompleted: {Settings.data.floatingPanel.clicking = false}
+    Component.onCompleted: {Settings.data.floatingPanel.giveFocus = false}
 
     Timer {
         interval: 200; running: true; repeat: true
@@ -391,7 +391,7 @@ Loader {
                                                 }
                                                 stdout: StdioCollector {
                                                     onStreamFinished: {
-                                                        Settings.data.floatingPanel.clicking = false
+                                                        Settings.data.floatingPanel.givefocus = false
                                                     }
                                                 }
                                                 stderr: StdioCollector {
@@ -409,7 +409,7 @@ Loader {
                                                         toggleModifier(modelData.key)
                                                     }
                                                     else{
-                                                        Settings.data.floatingPanel.clicking = true
+                                                        Settings.data.floatingPanel.givefocus = true
                                                         pluginApi.saveSettings();
                                                         if (modelData.key === "caps") {
                                                             root.capsON = !root.capsON
