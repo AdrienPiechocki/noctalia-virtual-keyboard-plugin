@@ -76,7 +76,7 @@ Loader {
     }
 
     Timer {
-        interval: 1500; running: true; repeat: false
+        interval: 1000; running: true; repeat: false
         onTriggered: {
             Logger.i("Keyboard", "found", jsonModel.count, "layouts in", jsonModel.folder)
             for (let i = 0; i < jsonModel.count; i++) {
