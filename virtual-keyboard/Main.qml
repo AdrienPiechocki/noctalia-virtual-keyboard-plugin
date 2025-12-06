@@ -68,7 +68,7 @@ Loader {
 
     property var layouts: []
 
-    property var currentLayout: setLayout()
+    property var currentLayout
 
     function setLayout() {
         if (pluginApi) {
@@ -81,12 +81,11 @@ Loader {
                         console.log("4")
                         if (pluginApi.pluginSettings.layout == layout) {
                             console.log("5")
-                            return layouts[i][layout]
+                            currentLayout = layouts[i][layout]
                         }
                     }
                 }
             }
-            setLayout()
         }
     }
 
@@ -99,12 +98,13 @@ Loader {
             
             FileView {
                 path: model.filePath
-                blockLoading: true
+
                 onLoaded: {
                     try {
                         let data = JSON.parse(text())
                         let name = model.fileName.slice(0, -5)
                         layouts.push({ [name]: data.layout })
+                        setLayout()
                     } catch(e) {
                         Logger.e("Keyboard", "JSON Error in", model.fileName, ":", e)
                     }
