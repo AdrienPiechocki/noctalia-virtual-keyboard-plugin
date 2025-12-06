@@ -16,29 +16,48 @@ ColumnLayout {
 
     spacing: Style.marginM
 
-    Component.onCompleted: {
-        Logger.i("VirtualKeyboard", "Settings UI loaded");
+    FolderListModel {
+        id: jsonFiles
+        folder: "file://" + Settings.configDir + "plugins/virtual-keyboard/layouts/"
+        nameFilters: ["*.json"]
     }
-
+    
     NComboBox {
+        id: comboBox
         label: pluginApi?.tr("settings.layout.label")
         description: pluginApi?.tr("settings.layout.description")
-        model: [
-            {
-            "key": "qwerty",
-            "name": pluginApi?.tr("options.layout.qwerty")
-            },
-            {
-            "key": "azerty",
-            "name": pluginApi?.tr("options.layout.azerty")
-            },
-            {
-            "key": "dvorak",
-            "name": pluginApi?.tr("options.layout.dvorak")
-            }
-        ]
+        model: []
         currentKey: root.valueLayout
         onSelected: key => root.valueLayout = key
+    }
+
+    Repeater {
+        model: jsonFiles
+
+        Item {
+            width: 0
+            height: 0
+            
+            FileView {
+                path: model.filePath
+
+                onLoaded: {
+                    try {
+                        let name = model.fileName.slice(0, -5)
+                        comboBox.model.push({
+                            "key": [name],
+                            "name": [name]
+                        })
+                    } catch(e) {
+                        Logger.e("Keyboard", "JSON Error in", model.fileName, ":", e)
+                    }
+                }
+            }
+        }
+    }
+
+    Component.onCompleted: {
+        Logger.i("Keyboard", "Settings UI loaded");
     }
 
     // This function is called by the dialog to save settings
