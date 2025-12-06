@@ -45,7 +45,13 @@ def press_key(code, down=True):
     run(["ydotool", "key", f"{code}:{1 if down else 0}"])
 
 def apply_layout(key, layout):
-    return AZERTY_TO_QWERTY.get(key.lower(), key) if layout == "azerty" else key
+    if layout == "azerty": 
+        return AZERTY_TO_QWERTY.get(key.lower(), key)
+    
+    #if other layout: return TO_QWERTY equivalent
+
+    else:
+        return key
 
 # ---------- SEND KEY ----------
 def send_key(layout, key, modifiers):
