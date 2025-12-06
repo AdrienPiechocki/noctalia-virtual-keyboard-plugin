@@ -51,6 +51,7 @@ ColumnLayout {
                             "key": name,
                             "name": name
                         })
+                        comboBox.currentKey = root.valueLayout
                     } catch(e) {
                         Logger.e("Keyboard", "JSON Error in", model.fileName, ":", e)
                     }
