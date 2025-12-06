@@ -68,7 +68,23 @@ Loader {
 
     property var layouts: []
 
-    property var currentLayout
+    property var currentLayout: {
+        if (pluginApi) {
+            for (let i = 0; i < layouts.length; i ++) {
+                for (let layout in layouts[i]) {
+                    if (pluginApi.pluginSettings.layout) {
+                        if (pluginApi.pluginSettings.layout == layout) {
+                            return layouts[i][layout]
+                        }
+                    }
+                    else if (pluginApi.manifest.metadata.defaultSettings.layout == layout) {
+                        console.log("ici")
+                        return layouts[i][layout]
+                    }
+                }
+            }
+        }
+    }
 
     Repeater {
         model: jsonFiles
@@ -85,20 +101,6 @@ Loader {
                         let data = JSON.parse(text())
                         let name = model.fileName.slice(0, -5)
                         layouts.push({ [name]: data.layout })
-                        if (pluginApi) {
-                            for (let i = 0; i < layouts.length; i ++) {
-                                for (let layout in layouts[i]) {
-                                    if (!!pluginApi.pluginSettings.layout) {
-                                        if (pluginApi.pluginSettings.layout == layout) {
-                                            currentLayout = layouts[i][layout]
-                                        }
-                                    }
-                                    else if (pluginApi.manifest.metadata.defaultSettings.layout == layout) {
-                                        currentLayout = layouts[i][layout]
-                                    }
-                                }
-                            }
-                        }
                     } catch(e) {
                         Logger.e("Keyboard", "JSON Error in", model.fileName, ":", e)
                     }
