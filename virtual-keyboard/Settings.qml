@@ -49,7 +49,7 @@ ColumnLayout {
     function saveSettings() {
         if (!pluginApi) {
             Logger.e("VirtualKeyboard", "Cannot save settings: pluginApi is null");
-        return;
+            return;
         }
 
         // Update the plugin settings object
