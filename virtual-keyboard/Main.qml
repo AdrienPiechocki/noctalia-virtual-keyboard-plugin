@@ -107,7 +107,7 @@ Loader {
                     return layouts.dvorak
                 }
                 else {
-                    return KeyboardLayoutService.currentLayout === "fr" ? azerty : layouts.qwerty
+                    return KeyboardLayoutService.currentLayout === "fr" ? layouts.azerty : layouts.qwerty
                 }
             }
             else {
