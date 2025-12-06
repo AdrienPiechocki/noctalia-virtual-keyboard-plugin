@@ -60,8 +60,6 @@ ColumnLayout {
     }
 
     Component.onCompleted: {
-        comboBox.model.sort()
-        comboBox.currentKey = root.valueLayout
         Logger.i("Keyboard", "Settings UI loaded");
     }
 
