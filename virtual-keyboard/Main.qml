@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Layouts
+import Qt.labs.folderlistmodel
 import Quickshell
 import Quickshell.Io
 import qs.Commons
@@ -57,128 +58,56 @@ Loader {
         }
     }
 
-    property var qwerty: [
-    // line 1
-    [
-        { key: "esc", width: 60, txt: "esc", shift: "esc" }, { key: "grave", width: 60, txt: "`", shift: "~"  }, { key: "1", width: 60, txt: "1", shift: "!"  }, { key: "2", width: 60, txt: "2", shift: "@"  }, 
-        { key: "3", width: 60, txt: "3", shift: "#" }, { key: "4", width: 60, txt: "4", shift: "$"  }, { key: "5", width: 60, txt: "5", shift: "%" }, { key: "6", width: 60, txt: "6", shift: "^"  }, 
-        { key: "7", width: 60, txt: "7", shift: "&"  }, { key: "8", width: 60, txt: "8", shift: "*" }, { key: "9", width: 60, txt: "9", shift: "(" }, { key: "0", width: 60, txt: "0", shift: ")"  },
-        { key: "-",width: 60, txt: "-", shift: "_"  }, { key: "=", width: 60, txt: "=", shift: "+"  }, { key: "backspace", width: 100, txt: "", shift: "" }
-    ],
-    // line 2
-    [
-        { key: "tab", width: 80, txt: "", shift: "" }, { key: "Q", width: 60, txt: "Q", shift: "Q" }, { key: "W", width: 60, txt: "W", shift: "W" }, { key: "E", width: 60, txt: "E", shift: "E" },
-        { key: "R", width: 60, txt: "R", shift: "R" }, { key: "T", width: 60, txt: "T", shift: "T" }, { key: "Y", width: 60, txt: "Y", shift: "Y" }, { key: "U", width: 60, txt: "U", shift: "U" },
-        { key: "I", width: 60, txt: "I", shift: "I" }, { key: "O", width: 60, txt: "O", shift: "O" }, { key: "P", width: 60, txt: "P", shift: "P" }, { key: "[", width: 60, txt: "[", shift: "{" },
-        { key: "]", width: 60, txt: "]", shift: "}" }, { key: "backslash", width: 60, txt: "\\", shift: "|" }
-    ],
-    // line 3
-    [
-        { key: "caps", width: 90, txt: "", shift: "" }, { key: "A", width: 60, txt: "A", shift: "A" }, { key: "S", width: 60, txt: "S", shift: "S" }, { key: "D", width: 60, txt: "D", shift: "D" },
-        { key: "F", width: 60, txt: "F", shift: "F" }, { key: "G", width: 60, txt: "G", shift: "G" }, { key: "H", width: 60, txt: "H", shift: "H" }, { key: "J", width: 60, txt: "J", shift: "J" },
-        { key: "K", width: 60, txt: "K", shift: "K" }, { key: "L", width: 60, txt: "L", shift: "L" }, { key: ";", width: 60, txt: ";", shift: ":" }, { key: "'", width: 60, txt: "'", shift: "\"" },
-        { key: "return", width: 100, txt: "", shift: "" }
-    ],
-    // line 4
-    [
-        { key: "shift", width: 120, txt: "", shift: "" }, { key: "Z", width: 60, txt: "Z", shift: "Z" }, { key: "X", width: 60, txt: "X", shift: "X" }, { key: "C", width: 60, txt: "C", shift: "C" },
-        { key: "V", width: 60, txt: "V", shift: "V" }, { key: "B", width: 60, txt: "B", shift: "B" }, { key: "N", width: 60, txt: "N", shift: "N" },
-        { key: "M", width: 60, txt: "M", shift: "M" }, { key: ",", width: 60, txt: ",", shift: "<" }, { key: ".", width: 60, txt: ".", shift: ">" }, { key: "/", width: 60, txt: "/", shift: "?" },
-        { key: "up", width: 60, txt: "", shift: "" }
-    ],
-    [
-        { key: "ctrl", width: 70, txt: "ctrl", shift: "ctrl" }, { key: "super", width: 60, txt: "", shift: "" }, { key: "alt", width: 60, txt: "alt", shift: "alt" },
-        { key: "space", width: 550, txt: "", shift: "" }, { key: "left", width: 60, txt: "", shift: "" }, { key: "down", width: 60, txt: "", shift: "" }, { key: "right", width: 60, txt: "", shift: "" }
-    ],
-    ]
-    property var azerty: [
-    // line 1
-    [
-        { key: "esc", width: 60, txt: "esc", shift: "esc" }, { key: "&", width: 60, txt: "&", shift: "1"  }, { key: "é", width: 60, txt: "é", shift: "2"  }, { key: "\"", width: 60, txt: "\"", shift: "3"  },
-        { key: "'", width: 60, txt: "'", shift: "4"  }, { key: "(", width: 60, txt: "(", shift: "5"  }, { key: "-", width: 60, txt: "-", shift: "6"  }, { key: "è", width: 60, txt: "è", shift: "7"  },
-        { key: "_", width: 60, txt: "_", shift: "8" }, { key: "ç", width: 60, txt: "ç", shift: "9" }, { key: "à", width: 60, txt: "à", shift: "0"  }, { key: ")",width: 60 , txt: ")", shift: "°" },
-        { key: "=", width: 60, txt: "=", shift: "+"  }, { key: "backspace", width: 100, txt: "", shift: ""  }
-    ],
-    // line 2
-    [
-        { key: "tab", width: 80, txt: "", shift: "" }, { key: "A", width: 60, txt: "A", shift: "A" }, { key: "Z", width: 60, txt: "Z", shift: "Z" }, { key: "E", width: 60, txt: "E", shift: "E" },
-        { key: "R", width: 60, txt: "R", shift: "R" }, { key: "T", width: 60, txt: "T", shift: "T" }, { key: "Y", width: 60, txt: "Y", shift: "Y" }, { key: "U", width: 60, txt: "U", shift: "U" },
-        { key: "I", width: 60, txt: "I", shift: "I" }, { key: "O", width: 60, txt: "O", shift: "O" }, { key: "P", width: 60, txt: "P", shift: "P" }, { key: "^", width: 60, txt: "^", shift: "¨" },
-        { key: "$", width: 60, txt: "$", shift: "£" }
-    ],
-    // line 3
-    [
-        { key: "caps", width: 90, txt: "", shift: "" }, { key: "Q", width: 60, txt: "Q", shift: "Q" }, { key: "S", width: 60, txt: "S", shift: "S" }, { key: "D", width: 60, txt: "D", shift: "D" },
-        { key: "F", width: 60, txt: "F", shift: "F" }, { key: "G", width: 60, txt: "G", shift: "G" }, { key: "H", width: 60, txt: "H", shift: "H" }, { key: "J", width: 60, txt: "J", shift: "J" },
-        { key: "K", width: 60, txt: "K", shift: "K" }, { key: "L", width: 60, txt: "L", shift: "L" }, { key: "M", width: 60, txt: "M", shift: "M" }, { key: "ù", width: 60, txt: "ù", shift: "%" },
-        { key: "*", width: 60, txt: "*", shift: "µ" }, { key: "return", width: 100, txt: "", shift: "" }
-    ],
-    // line 4
-    [
-        { key: "shift", width: 120, txt: "", shift: "" }, { key: "W", width: 60, txt: "W", shift: "W" }, { key: "X", width: 60, txt: "X", shift: "X" }, { key: "C", width: 60, txt: "C", shift: "C" },
-        { key: "V", width: 60, txt: "V", shift: "V" }, { key: "B", width: 60, txt: "B", shift: "B" }, { key: "N", width: 60, txt: "N", shift: "N" },
-        { key: ",", width: 60, txt: ",", shift: "?" }, { key: ";", width: 60, txt: ";", shift: "." }, { key: ":", width: 60, txt: ":", shift: "/" }, { key: "!", width: 60, txt: "!", shift: "§" },
-        { key: "up", width: 60, txt: "", shift: "" }
-    ],
-    // line 5
-    [
-        { key: "ctrl", width: 70, txt: "ctrl", shift: "ctrl" }, { key: "super", width: 60, txt: "", shift: "" }, { key: "alt", width: 60, txt: "alt", shift: "alt" },
-        { key: "space", width: 550, txt: "", shift: "" }, { key: "left", width: 60, txt: "", shift: "" }, { key: "down", width: 60, txt: "", shift: "" }, { key: "right", width: 60, txt: "", shift: "" }
-    ]
-    ]
+    FolderListModel {
+        id: jsonModel
+        folder: Qt.resolvedUrl(Settings.configDir + "plugins/virtual-keyboard/layouts/")   // ton dossier layouts
+        nameFilters: ["*.json"]
+    }
 
-    property var dvorak: [
-    // line 1
-    [
-        { key: "esc", width: 60, txt: "esc", shift: "esc" }, { key: "1", width: 60, txt: "1", shift: "!"  }, { key: "2", width: 60, txt: "2", shift: "@"  }, { key: "3", width: 60, txt: "3", shift: "#" },
-        { key: "4", width: 60, txt: "4", shift: "$"  }, { key: "5", width: 60, txt: "5", shift: "%" }, { key: "6", width: 60, txt: "6", shift: "^"  }, { key: "7", width: 60, txt: "7", shift: "&"  },
-        { key: "8", width: 60, txt: "8", shift: "*" }, { key: "9", width: 60, txt: "9", shift: "(" }, { key: "0", width: 60, txt: "0", shift: ")"  }, { key: "[", width: 60, txt: "[", shift: "{" }, 
-        { key: "]", width: 60, txt: "]", shift: "}" }, { key: "backspace", width: 100, txt: "", shift: "" }
-    ],
-    // line 2
-    [
-        { key: "tab", width: 80, txt: "", shift: "" }, { key: "'", width: 60, txt: "'", shift: "\"" }, { key: ",", width: 60, txt: ",", shift: "<" }, { key: ".", width: 60, txt: ".", shift: ">" },
-        { key: "P", width: 60, txt: "P", shift: "P" }, { key: "Y", width: 60, txt: "Y", shift: "Y" }, { key: "F", width: 60, txt: "F", shift: "F" }, { key: "G", width: 60, txt: "G", shift: "G" },
-        { key: "C", width: 60, txt: "C", shift: "C" }, { key: "R", width: 60, txt: "R", shift: "R" }, { key: "L", width: 60, txt: "L", shift: "L" }, { key: "/", width: 60, txt: "/", shift: "?" },
-        { key: "=", width: 60, txt: "=", shift: "+" }
-    ],
-    // line 3
-    [
-        { key: "caps", width: 90, txt: "", shift: "" }, { key: "A", width: 60, txt: "A", shift: "A" }, { key: "O", width: 60, txt: "O", shift: "O" }, { key: "E", width: 60, txt: "E", shift: "E" },
-        { key: "U", width: 60, txt: "U", shift: "U" }, { key: "I", width: 60, txt: "I", shift: "I" }, { key: "D", width: 60, txt: "D", shift: "D" }, { key: "H", width: 60, txt: "H", shift: "H" },
-        { key: "T", width: 60, txt: "T", shift: "T" }, { key: "N", width: 60, txt: "N", shift: "N" }, { key: "S", width: 60, txt: "S", shift: "S" }, { key: "-", width: 60, txt: "-", shift: "_" },
-        { key: "return", width: 100, txt: "", shift: "" }
-    ],
-    // line 4
-    [
-        { key: "shift", width: 120, txt: "", shift: "" }, { key: ";", width: 60, txt: ";", shift: ":" }, { key: "Q", width: 60, txt: "Q", shift: "Q" }, { key: "J", width: 60, txt: "J", shift: "J" },
-        { key: "K", width: 60, txt: "K", shift: "K" }, { key: "X", width: 60, txt: "X", shift: "X" }, { key: "B", width: 60, txt: "B", shift: "B" }, { key: "M", width: 60, txt: "M", shift: "M" }, 
-        { key: "W", width: 60, txt: "W", shift: "W" }, { key: "V", width: 60, txt: "V", shift: "V" }, { key: "Z", width: 60, txt: "Z", shift: "Z" },
-        { key: "up", width: 60, txt: "", shift: "" }
-    ],
-    [
-        { key: "ctrl", width: 70, txt: "ctrl", shift: "ctrl" }, { key: "super", width: 60, txt: "", shift: "" }, { key: "alt", width: 60, txt: "alt", shift: "alt" },
-        { key: "space", width: 550, txt: "", shift: "" }, { key: "left", width: 60, txt: "", shift: "" }, { key: "down", width: 60, txt: "", shift: "" }, { key: "right", width: 60, txt: "", shift: "" }
-    ],
-    ]
+    function readJson(url) {
+        var xhr = new XMLHttpRequest()
+        xhr.open("GET", url, false)
+        xhr.send()
+        return JSON.parse(xhr.responseText)
+    }
+
+    property var layouts: {}
+
+    Component.onCompleted: {
+        Logger.i("Keyboard", "found ", jsonModel.count, " layouts")
+        for (let i = 0; i < jsonModel.count; i++) {
+            let url = Qt.resolvedUrl(i)
+            let json = readJson(url)
+            layouts[url] = json.layout
+            Logger.i("Keyboard", "Registered layout ", url)
+        }
+    }
 
     property var layout: {
-        if (pluginApi) {
-            if (pluginApi.pluginSettings.layout === "auto") {
-                return KeyboardLayoutService.currentLayout === "fr" ? azerty : qwerty
-            }
-            else if (pluginApi.pluginSettings.layout === "azerty") {
-                return azerty
-            }
-            else if (pluginApi.pluginSettings.layout === "qwerty") {
-                return qwerty
-            }
-            else if (pluginApi.pluginSettings.layout === "dvorak") {
-                return dvorak
-            }
-            else {
-                return KeyboardLayoutService.currentLayout === "fr" ? azerty : qwerty
-            }
+        if (layouts !== {}) {
+            // if (pluginApi) {
+            //     if (pluginApi.pluginSettings.layout === "auto") {
+            //         return KeyboardLayoutService.currentLayout === "fr" ? azerty : qwerty
+            //     }
+            //     else if (pluginApi.pluginSettings.layout === "azerty") {
+            //         return azerty
+            //     }
+            //     else if (pluginApi.pluginSettings.layout === "qwerty") {
+            //         return qwerty
+            //     }
+            //     else if (pluginApi.pluginSettings.layout === "dvorak") {
+            //         return dvorak
+            //     }
+            //     else {
+            //         return KeyboardLayoutService.currentLayout === "fr" ? azerty : qwerty
+            //     }
+            // }
+            // else {
+            //     return {}
+            // }
+        }
+        else {
+            return {}
         }
     }
 

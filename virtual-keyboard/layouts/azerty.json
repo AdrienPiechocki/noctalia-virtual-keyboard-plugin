@@ -1,0 +1,32 @@
+{
+    "layout": [
+        [
+            { "key": "esc", "width": 60, "txt": "esc", "shift": "esc" }, { "key": "&", "width": 60, "txt": "&", "shift": "1"  }, { "key": "é", "width": 60, "txt": "é", "shift": "2"  }, { "key": "\"", "width": 60, "txt": "\"", "shift": "3"  },
+            { "key": "'", "width": 60, "txt": "'", "shift": "4"  }, { "key": "(", "width": 60, "txt": "(", "shift": "5"  }, { "key": "-", "width": 60, "txt": "-", "shift": "6"  }, { "key": "è", "width": 60, "txt": "è", "shift": "7"  },
+            { "key": "_", "width": 60, "txt": "_", "shift": "8" }, { "key": "ç", "width": 60, "txt": "ç", "shift": "9" }, { "key": "à", "width": 60, "txt": "à", "shift": "0"  }, { "key": ")","width": 60 , "txt": ")", "shift": "°" },
+            { "key": "=", "width": 60, "txt": "=", "shift": "+"  }, { "key": "backspace", "width": 100, "txt": "", "shift": ""  }
+        ],
+        [
+            { "key": "tab", "width": 80, "txt": "", "shift": "" }, { "key": "A", "width": 60, "txt": "A", "shift": "A" }, { "key": "Z", "width": 60, "txt": "Z", "shift": "Z" }, { "key": "E", "width": 60, "txt": "E", "shift": "E" },
+            { "key": "R", "width": 60, "txt": "R", "shift": "R" }, { "key": "T", "width": 60, "txt": "T", "shift": "T" }, { "key": "Y", "width": 60, "txt": "Y", "shift": "Y" }, { "key": "U", "width": 60, "txt": "U", "shift": "U" },
+            { "key": "I", "width": 60, "txt": "I", "shift": "I" }, { "key": "O", "width": 60, "txt": "O", "shift": "O" }, { "key": "P", "width": 60, "txt": "P", "shift": "P" }, { "key": "^", "width": 60, "txt": "^", "shift": "¨" },
+            { "key": "$", "width": 60, "txt": "$", "shift": "£" }
+        ],
+        [
+            { "key": "caps", "width": 90, "txt": "", "shift": "" }, { "key": "Q", "width": 60, "txt": "Q", "shift": "Q" }, { "key": "S", "width": 60, "txt": "S", "shift": "S" }, { "key": "D", "width": 60, "txt": "D", "shift": "D" },
+            { "key": "F", "width": 60, "txt": "F", "shift": "F" }, { "key": "G", "width": 60, "txt": "G", "shift": "G" }, { "key": "H", "width": 60, "txt": "H", "shift": "H" }, { "key": "J", "width": 60, "txt": "J", "shift": "J" },
+            { "key": "K", "width": 60, "txt": "K", "shift": "K" }, { "key": "L", "width": 60, "txt": "L", "shift": "L" }, { "key": "M", "width": 60, "txt": "M", "shift": "M" }, { "key": "ù", "width": 60, "txt": "ù", "shift": "%" },
+            { "key": "*", "width": 60, "txt": "*", "shift": "µ" }, { "key": "return", "width": 100, "txt": "", "shift": "" }
+        ],
+        [
+            { "key": "shift", "width": 120, "txt": "", "shift": "" }, { "key": "W", "width": 60, "txt": "W", "shift": "W" }, { "key": "X", "width": 60, "txt": "X", "shift": "X" }, { "key": "C", "width": 60, "txt": "C", "shift": "C" },
+            { "key": "V", "width": 60, "txt": "V", "shift": "V" }, { "key": "B", "width": 60, "txt": "B", "shift": "B" }, { "key": "N", "width": 60, "txt": "N", "shift": "N" },
+            { "key": ",", "width": 60, "txt": ",", "shift": "?" }, { "key": ";", "width": 60, "txt": ";", "shift": "." }, { "key": ":", "width": 60, "txt": ":", "shift": "/" }, { "key": "!", "width": 60, "txt": "!", "shift": "§" },
+            { "key": "up", "width": 60, "txt": "", "shift": "" }
+        ],
+        [
+            { "key": "ctrl", "width": 70, "txt": "ctrl", "shift": "ctrl" }, { "key": "super", "width": 60, "txt": "", "shift": "" }, { "key": "alt", "width": 60, "txt": "alt", "shift": "alt" },
+            { "key": "space", "width": 550, "txt": "", "shift": "" }, { "key": "left", "width": 60, "txt": "", "shift": "" }, { "key": "down", "width": 60, "txt": "", "shift": "" }, { "key": "right", "width": 60, "txt": "", "shift": "" }
+        ]
+    ]
+}
