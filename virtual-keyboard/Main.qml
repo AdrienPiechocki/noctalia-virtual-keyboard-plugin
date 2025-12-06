@@ -79,14 +79,12 @@ Loader {
             
             FileView {
                 path: model.filePath
-                
+                blockLoading: true
                 onLoaded: {
                     try {
                         let data = JSON.parse(text())
                         let name = model.fileName.slice(0, -5)
-                        let newLayouts = root.layouts.slice()
-                        newLayouts.push({ name: data.layout })
-                        root.layouts = newLayouts
+                        root.layouts.push({name: data.layout})
                         console.log(root.layout, root.pluginApi)
                         if (root.pluginApi) {
                             for (let i = 0; i < root.layouts.count; i ++) {
