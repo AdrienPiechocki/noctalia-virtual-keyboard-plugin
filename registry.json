@@ -4,7 +4,7 @@
     {
       "id": "virtual-keyboard",
       "name": "Virtual Keyboard",
-      "version": "1.1.1",
+      "version": "1.0.0",
       "author": "Adrien Piechocki",
       "description": "A Virtual Keyboard plugin made for accessibility. REQUIRES ydotool",
       "repository": "https://github.com/AdrienPiechocki/noctalia-virtual-keyboard-plugin",
