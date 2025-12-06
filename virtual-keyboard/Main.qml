@@ -58,7 +58,7 @@ Loader {
 
     FolderListModel {
         id: jsonModel
-        folder: "file:///home/adrien/.config/noctalia/plugins/virtual-keyboard/layouts"
+        folder: "file://" + Settings.configDir + "plugins/virtual-keyboard/layouts/"
         nameFilters: ["*.json"]
     }
 
@@ -73,7 +73,7 @@ Loader {
 
     Component.onCompleted: {
         Settings.data.floatingPanel.giveFocus = false
-        Logger.i("Keyboard", "found", jsonModel.count, "layouts in", jsonModel.folder)
+        Logger.i("Keyboard", "found", jsonModel, "layouts in", jsonModel.folder)
         for (let i = 0; i < jsonModel.count; i++) {
             let url = Qt.resolvedUrl(i)
             let json = readJson(url)
