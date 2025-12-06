@@ -88,8 +88,8 @@ Loader {
                         if (pluginApi) {
                             for (let i = 0; i < layouts.length; i ++) {
                                 for (let layout in layouts[i]) {
-                                    console.log(layout, layouts[i])
                                     if (pluginApi.pluginSettings.layout === layout) {
+                                        console.log(layouts[i][layout])
                                         currentLayout = layouts[i][layout]
                                     }
                                 }
