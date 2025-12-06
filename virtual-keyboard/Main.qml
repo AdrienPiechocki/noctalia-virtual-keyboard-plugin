@@ -84,20 +84,19 @@ Loader {
                     try {
                         let data = JSON.parse(text())
                         let name = model.fileName.slice(0, -5)
-                        layouts.push({name: data.layout})
+                        root.layouts.push({name: data.layout})
 
-                        if (layouts !== []) {
-                            if (pluginApi) {
-                                for (let i = 0; i < layouts.count; i ++) {
-                                    for (let layout in layouts[i]) {
-                                        console.log(layout, layouts[i])
-                                        if (pluginApi.pluginSettings.layout === layout) {
-                                            currentLayout = layouts[i][layout]
-                                        }
+                        if (root.pluginApi) {
+                            for (let i = 0; i < root.layouts.count; i ++) {
+                                for (let layout in root.layouts[i]) {
+                                    console.log(layout, root.layouts[i])
+                                    if (root.pluginApi.pluginSettings.layout === layout) {
+                                        root.currentLayout = root.layouts[i][layout]
                                     }
                                 }
                             }
                         }
+                        
                     } catch(e) {
                         Logger.e("Keyboard", "JSON Error in", model.fileName, ":", e)
                     }
