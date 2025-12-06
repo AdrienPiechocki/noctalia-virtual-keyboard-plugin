@@ -85,9 +85,8 @@ Loader {
                         let data = JSON.parse(text())
                         let name = model.fileName.slice(0, -5)
                         layouts.push({name: data.layout})
-                        console.log(layouts, pluginApi)
                         if (pluginApi) {
-                            for (let i = 0; i < layouts.count; i ++) {
+                            for (let i = 0; i < layouts.length; i ++) {
                                 for (let layout in layouts[i]) {
                                     console.log(layout, layouts[i])
                                     if (pluginApi.pluginSettings.layout === layout) {
