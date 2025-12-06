@@ -81,8 +81,9 @@ Loader {
                 onLoaded: {
                     try {
                         let data = JSON.parse(text())
+                        console.log(data, data.layout, model.fileName)
                         let newLayouts = layouts
-                        newLayouts[model.fileName] = data["layout"]
+                        newLayouts[model.fileName] = data.layout
                         layouts = newLayouts
                     } catch(e) {
                         console.error("JSON Error in", model.fileName, ":", e)
