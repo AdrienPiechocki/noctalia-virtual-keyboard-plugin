@@ -91,29 +91,28 @@ Loader {
         }
     }
 
-
-    property var layout: {
+    property var currentLayout: {
         if (layouts !== {}) {
-            // if (pluginApi) {
-            //     if (pluginApi.pluginSettings.layout === "auto") {
-            //         return KeyboardLayoutService.currentLayout === "fr" ? azerty : qwerty
-            //     }
-            //     else if (pluginApi.pluginSettings.layout === "azerty") {
-            //         return azerty
-            //     }
-            //     else if (pluginApi.pluginSettings.layout === "qwerty") {
-            //         return qwerty
-            //     }
-            //     else if (pluginApi.pluginSettings.layout === "dvorak") {
-            //         return dvorak
-            //     }
-            //     else {
-            //         return KeyboardLayoutService.currentLayout === "fr" ? azerty : qwerty
-            //     }
-            // }
-            // else {
-            //     return {}
-            // }
+            if (pluginApi) {
+                if (pluginApi.pluginSettings.layout === "auto") {
+                    return KeyboardLayoutService.currentLayout === "fr" ? layouts.azerty : layouts.qwerty
+                }
+                else if (pluginApi.pluginSettings.layout === "azerty") {
+                    return layouts.azerty
+                }
+                else if (pluginApi.pluginSettings.layout === "qwerty") {
+                    return layouts.qwerty
+                }
+                else if (pluginApi.pluginSettings.layout === "dvorak") {
+                    return layouts.dvorak
+                }
+                else {
+                    return KeyboardLayoutService.currentLayout === "fr" ? azerty : layouts.qwerty
+                }
+            }
+            else {
+                return {}
+            }
         }
         else {
             return {}
@@ -315,7 +314,7 @@ Loader {
                             spacing: Style.marginM
 
                             Repeater {
-                                model: root.layout
+                                model: root.currentLayout
 
                                 RowLayout {
                                     spacing: Style.marginL
