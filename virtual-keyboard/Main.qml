@@ -70,16 +70,17 @@ Loader {
 
     property var currentLayout: {
         if (pluginApi) {
+            console.log("1")
             for (let i = 0; i < layouts.length; i ++) {
+                console.log("2")
                 for (let layout in layouts[i]) {
+                    console.log("3")
                     if (pluginApi.pluginSettings.layout) {
+                        console.log("4")
                         if (pluginApi.pluginSettings.layout == layout) {
+                            console.log("5")
                             return layouts[i][layout]
                         }
-                    }
-                    else if (pluginApi.manifest.metadata.defaultSettings.layout == layout) {
-                        console.log("ici")
-                        return layouts[i][layout]
                     }
                 }
             }
