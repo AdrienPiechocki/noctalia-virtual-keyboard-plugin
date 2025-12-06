@@ -51,6 +51,7 @@ Loader {
     
     Component.onCompleted: {
         Settings.data.floatingPanel.giveFocus = false
+        pluginApi.saveSettings()
     }
 
     Timer {
