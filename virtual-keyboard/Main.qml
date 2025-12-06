@@ -74,20 +74,14 @@ Loader {
         interval: 1000; running: true; repeat: true
         onTriggered: {
             if (pluginApi) {
-                console.log("1")
                 for (let i = 0; i < layouts.length; i ++) {
-                    console.log("2")
                     for (let layout in layouts[i]) {
-                        console.log("3")
                         if (pluginApi.pluginSettings.layout) {
-                            console.log("4")
                             if (pluginApi.pluginSettings.layout == layout) {
-                                console.log("5")
                                 currentLayout = layouts[i][layout]
                             }
                         }
                         else if (pluginApi.manifest.metadata.defaultSettings.layout == layout) {
-                            console.log("6")
                             currentLayout = layouts[i][layout]
                         }
                     }
