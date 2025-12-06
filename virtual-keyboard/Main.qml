@@ -47,7 +47,14 @@ Loader {
 
 
     active: pluginApi ? root.pluginApi.pluginSettings.enabled || pluginApi.manifest.metadata.defaultSettings.enabled || false : false
-
+    
+    Timer {
+        interval: 200; running: true; repeat: true
+        onTriggered: {
+            Settings.data.floatingPanel.enabled = root.active
+            Settings.data.floatingPanel.clicking = root.pluginApi.pluginSettings.clicking
+        }
+    }
     
     property var qwerty: [
     // line 1
