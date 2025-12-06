@@ -79,9 +79,6 @@ Loader {
                 path: model.filePath
 
                 onLoaded: {
-                    if (!exists)
-                        return
-
                     try {
                         let data = JSON.parse(text)
                         layouts[model.fileName] = data.layout
