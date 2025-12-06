@@ -94,6 +94,7 @@ Loader {
                                         }
                                     }
                                     else if (pluginApi.manifest.metadata.defaultSettings.layout == layout) {
+                                        console.log("ici")
                                         currentLayout = layouts[i][layout]
                                     }
                                 }
