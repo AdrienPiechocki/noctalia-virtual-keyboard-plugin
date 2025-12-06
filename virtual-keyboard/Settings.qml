@@ -46,7 +46,7 @@ ColumnLayout {
 
                 onLoaded: {
                     try {
-                        let name = model.fileName
+                        let name = model.fileName.slice(0, -5)
                         comboBox.model.push({
                             "key": name,
                             "name": name
