@@ -88,7 +88,7 @@ Loader {
                         if (pluginApi) {
                             for (let i = 0; i < layouts.length; i ++) {
                                 for (let layout in layouts[i]) {
-                                    if (pluginApi.pluginSettings.layout) {
+                                    if (pluginApi?.pluginSettings?.layout) {
                                         if (pluginApi.pluginSettings.layout == layout) {
                                             currentLayout = layouts[i][layout]
                                         }
