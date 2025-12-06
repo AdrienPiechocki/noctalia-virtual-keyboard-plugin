@@ -91,9 +91,7 @@ Loader {
         }
     }
 
-    property var currentLayout: {}
-    
-    onLayoutsChanged: {
+    property var currentLayout: {
         if (layouts !== []) {
             if (pluginApi) {
                 for (let i = 0; i < layouts.count; i ++) {
