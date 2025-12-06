@@ -50,6 +50,13 @@ Loader {
     
     Component.onCompleted: {Settings.data.floatingPanel.clicking = false}
 
+    Timer {
+        interval: 200; running: true; repeat: true
+        onTriggered: {
+            Settings.data.floatingPanel.enabled = pluginApi ? root.pluginApi.pluginSettings.enabled || pluginApi.manifest.metadata.defaultSettings.enabled || false : false
+        }
+    }
+
     property var qwerty: [
     // line 1
     [
@@ -204,14 +211,6 @@ Loader {
                                 }
                             }
                             y = 0
-                        }
-
-                        MouseArea {
-                            id: hover
-                            anchors.fill: parent
-                            hoverEnabled: true
-                            onEntered: {Settings.data.floatingPanel.enabled = true}
-                            onExited: {Settings.data.floatingPanel.enabled = false}
                         }
 
                         NBox {
