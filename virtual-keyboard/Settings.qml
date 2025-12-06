@@ -48,8 +48,8 @@ ColumnLayout {
                     try {
                         let name = model.fileName.slice(0, -5)
                         comboBox.model.push({
-                            "key": [name],
-                            "name": [name]
+                            "key": name,
+                            "name": name
                         })
                     } catch(e) {
                         Logger.e("Keyboard", "JSON Error in", model.fileName, ":", e)
