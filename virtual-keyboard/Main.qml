@@ -391,7 +391,7 @@ Loader {
                                                                 root.keyArray.push(k);
                                                             }
                                                         }
-                                                        root.keyArray.unshift(root.currentLayout === root.azerty ? "azerty" : "qwerty")
+                                                        root.keyArray.unshift(pluginApi.pluginSettings.layout)
                                                         runScript.startWithKeys(keyArray)
                                                     }
                                                     Logger.d(modelData.key.toString())
