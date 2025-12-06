@@ -60,10 +60,10 @@ Loader {
     property var qwerty: [
     // line 1
     [
-        { key: "esc", width: 60, txt: "esc", shift: "esc" }, { key: "grave", width: 60, txt: "`", shift: "~"  }, { key: "1", width: 60, txt: "1", shift: "!"  }, { key: "2", width: 60, txt: "2", shift: "@"  }, { key: "3", width: 60, txt: "3", shift: "#" },
-        { key: "4", width: 60, txt: "4", shift: "$"  }, { key: "5", width: 60, txt: "5", shift: "%" }, { key: "6", width: 60, txt: "6", shift: "^"  }, { key: "7", width: 60, txt: "7", shift: "&"  },
-        { key: "8", width: 60, txt: "8", shift: "*" }, { key: "9", width: 60, txt: "9", shift: "(" }, { key: "0", width: 60, txt: "0", shift: ")"  }, { key: "-",width: 60, txt: "-", shift: "_"  },
-        { key: "=", width: 60, txt: "=", shift: "+"  }, { key: "backspace", width: 100, txt: "", shift: "" }
+        { key: "esc", width: 60, txt: "esc", shift: "esc" }, { key: "grave", width: 60, txt: "`", shift: "~"  }, { key: "1", width: 60, txt: "1", shift: "!"  }, { key: "2", width: 60, txt: "2", shift: "@"  }, 
+        { key: "3", width: 60, txt: "3", shift: "#" }, { key: "4", width: 60, txt: "4", shift: "$"  }, { key: "5", width: 60, txt: "5", shift: "%" }, { key: "6", width: 60, txt: "6", shift: "^"  }, 
+        { key: "7", width: 60, txt: "7", shift: "&"  }, { key: "8", width: 60, txt: "8", shift: "*" }, { key: "9", width: 60, txt: "9", shift: "(" }, { key: "0", width: 60, txt: "0", shift: ")"  },
+        { key: "-",width: 60, txt: "-", shift: "_"  }, { key: "=", width: 60, txt: "=", shift: "+"  }, { key: "backspace", width: 100, txt: "", shift: "" }
     ],
     // line 2
     [
@@ -127,6 +127,42 @@ Loader {
     ]
     ]
 
+    property var dvorak: [
+    // line 1
+    [
+        { key: "esc", width: 60, txt: "esc", shift: "esc" }, { key: "1", width: 60, txt: "1", shift: "!"  }, { key: "2", width: 60, txt: "2", shift: "@"  }, { key: "3", width: 60, txt: "3", shift: "#" },
+        { key: "4", width: 60, txt: "4", shift: "$"  }, { key: "5", width: 60, txt: "5", shift: "%" }, { key: "6", width: 60, txt: "6", shift: "^"  }, { key: "7", width: 60, txt: "7", shift: "&"  },
+        { key: "8", width: 60, txt: "8", shift: "*" }, { key: "9", width: 60, txt: "9", shift: "(" }, { key: "0", width: 60, txt: "0", shift: ")"  }, { key: "-",width: 60, txt: "-", shift: "_"  },
+        { key: "=", width: 60, txt: "=", shift: "+"  }, { key: "backspace", width: 100, txt: "", shift: "" }
+    ],
+    // line 2
+    [
+        { key: "tab", width: 80, txt: "", shift: "" }, { key: "Q", width: 60, txt: "Q", shift: "Q" }, { key: "W", width: 60, txt: "W", shift: "W" }, { key: "F", width: 60, txt: "F", shift: "F" },
+        { key: "P", width: 60, txt: "P", shift: "P" }, { key: "G", width: 60, txt: "G", shift: "G" }, { key: "J", width: 60, txt: "J", shift: "J" }, { key: "L", width: 60, txt: "L", shift: "L" },
+        { key: "I", width: 60, txt: "I", shift: "I" }, { key: "O", width: 60, txt: "O", shift: "O" }, { key: "P", width: 60, txt: "P", shift: "P" }, { key: "[", width: 60, txt: "[", shift: "{" },
+        { key: "U", width: 60, txt: "U", shift: "U" }, { key: "Y", width: 60, txt: "Y", shift: "Y" }, { key: ";", width: 60, txt: ";", shift: ":" }, { key: "[", width: 60, txt: "[", shift: "{" }, 
+        { key: "]", width: 60, txt: "]", shift: "}" }
+    ],
+    // line 3
+    [
+        { key: "caps", width: 90, txt: "", shift: "" }, { key: "A", width: 60, txt: "A", shift: "A" }, { key: "R", width: 60, txt: "R", shift: "R" }, { key: "S", width: 60, txt: "S", shift: "S" },
+        { key: "T", width: 60, txt: "T", shift: "T" }, { key: "D", width: 60, txt: "D", shift: "D" }, { key: "H", width: 60, txt: "H", shift: "H" }, { key: "N", width: 60, txt: "N", shift: "N" },
+        { key: "E", width: 60, txt: "E", shift: "E" }, { key: "I", width: 60, txt: "I", shift: "I" }, { key: "O", width: 60, txt: "O", shift: "O" }, { key: "'", width: 60, txt: "'", shift: "\"" },
+        { key: "return", width: 100, txt: "", shift: "" }
+    ],
+    // line 4
+    [
+        { key: "shift", width: 120, txt: "", shift: "" }, { key: "Z", width: 60, txt: "Z", shift: "Z" }, { key: "X", width: 60, txt: "X", shift: "X" }, { key: "C", width: 60, txt: "C", shift: "C" },
+        { key: "V", width: 60, txt: "V", shift: "V" }, { key: "B", width: 60, txt: "B", shift: "B" }, { key: "K", width: 60, txt: "K", shift: "K" },
+        { key: "M", width: 60, txt: "M", shift: "M" }, { key: ",", width: 60, txt: ",", shift: "<" }, { key: ".", width: 60, txt: ".", shift: ">" }, { key: "/", width: 60, txt: "/", shift: "?" },
+        { key: "up", width: 60, txt: "", shift: "" }
+    ],
+    [
+        { key: "ctrl", width: 70, txt: "ctrl", shift: "ctrl" }, { key: "super", width: 60, txt: "", shift: "" }, { key: "alt", width: 60, txt: "alt", shift: "alt" },
+        { key: "space", width: 550, txt: "", shift: "" }, { key: "left", width: 60, txt: "", shift: "" }, { key: "down", width: 60, txt: "", shift: "" }, { key: "right", width: 60, txt: "", shift: "" }
+    ],
+    ]
+
     property var layout: {
         if (pluginApi) {
             if (pluginApi.pluginSettings.layout === "auto") {
@@ -137,6 +173,9 @@ Loader {
             }
             else if (pluginApi.pluginSettings.layout === "qwerty") {
                 return qwerty
+            }
+            else if (pluginApi.pluginSettings.layout === "dvorak") {
+                return dvorak
             }
             else {
                 return KeyboardLayoutService.currentLayout === "fr" ? azerty : qwerty

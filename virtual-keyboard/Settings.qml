@@ -35,7 +35,9 @@ ColumnLayout {
             {
             "key": "azerty",
             "name": pluginApi?.tr("options.layout.azerty")
-            }
+            },
+            "key": "dvorak",
+            "name": pluginApi?.tr("options.layout.dvorak")
         ]
         currentKey: root.valueLayout
         onSelected: key => root.valueLayout = key
@@ -44,7 +46,7 @@ ColumnLayout {
     // This function is called by the dialog to save settings
     function saveSettings() {
         if (!pluginApi) {
-        Logger.e("VirtualKeyboard", "Cannot save settings: pluginApi is null");
+            Logger.e("VirtualKeyboard", "Cannot save settings: pluginApi is null");
         return;
         }
 

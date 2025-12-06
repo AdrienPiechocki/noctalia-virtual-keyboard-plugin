@@ -12,7 +12,8 @@
     "layout": {
       "auto": "auto (QWERTY)",
       "qwerty": "QWERTY",
-      "azerty": "AZERTY"
+      "azerty": "AZERTY",
+      "dvorak": "DVORAK"
     }
   }
 }
