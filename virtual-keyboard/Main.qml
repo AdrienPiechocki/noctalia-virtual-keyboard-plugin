@@ -96,14 +96,7 @@ Loader {
                                         }
                                     }
                                 }
-                                currentLayout = {}
                             }
-                            else {
-                                currentLayout = {}
-                            }
-                        }
-                        else {
-                            currentLayout = {}
                         }
                     } catch(e) {
                         Logger.e("Keyboard", "JSON Error in", model.fileName, ":", e)
