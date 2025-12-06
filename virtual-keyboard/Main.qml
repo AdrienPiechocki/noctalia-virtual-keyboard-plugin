@@ -84,7 +84,7 @@ Loader {
                     try {
                         let data = JSON.parse(text())
                         let name = model.fileName.slice(0, -5)
-                        layouts.push({name: data.layout})
+                        layouts.push({ [name]: data.layout })
                         if (pluginApi) {
                             for (let i = 0; i < layouts.length; i ++) {
                                 for (let layout in layouts[i]) {
