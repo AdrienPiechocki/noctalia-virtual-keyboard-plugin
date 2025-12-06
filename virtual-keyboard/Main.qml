@@ -71,19 +71,23 @@ Loader {
     Repeater {
         model: jsonFiles
 
-        FileView {
-            id: loader
-            path: model.filePath
+        Item {
+            width: 0
+            height: 0
+            
+            FileView {
+                path: model.filePath
 
-            onLoaded: {
-                if (!exists)
-                    return
+                onLoaded: {
+                    if (!exists)
+                        return
 
-                try {
-                    let data = JSON.parse(text)
-                    layouts[model.fileName] = data.layout
-                } catch(e) {
-                    console.error("JSON Error in", model.fileName, ":", e)
+                    try {
+                        let data = JSON.parse(text)
+                        layouts[model.fileName] = data.layout
+                    } catch(e) {
+                        console.error("JSON Error in", model.fileName, ":", e)
+                    }
                 }
             }
         }
