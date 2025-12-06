@@ -82,7 +82,7 @@ Loader {
             id: loader
             path: model.filePath
 
-            onReady: {
+            onLoaded: {
                 if (!exists)
                     return
 
