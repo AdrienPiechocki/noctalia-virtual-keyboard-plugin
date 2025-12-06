@@ -80,7 +80,7 @@ Loader {
         onTriggered: {
             Logger.i("Keyboard", "found", jsonModel.count, "layouts in", jsonModel.folder)
             for (let i = 0; i < jsonModel.count; i++) {
-                let url = Qt.resolvedUrl(i)
+                let url = Qt.resolvedUrl(jsonModel[i])
                 let json = readJson(url)
                 layouts[url] = json.layout
                 Logger.i("Keyboard", "Registered layout ", url)
