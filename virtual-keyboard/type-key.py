@@ -23,23 +23,6 @@ AZERTY_TO_QWERTY = {
     ")":"-","^":"[","$":"]","ù":"'",",":"m",";":",",":":".","!":"/"
 }
 
-STATE_FILE = os.path.abspath(os.path.join(__file__, "../ydotool_toggle_state.json"))
-
-# ---------- FILE HELPERS ----------
-def load_state():
-    if not os.path.isfile(STATE_FILE):
-        return {}
-    try:
-        with open(STATE_FILE, "r") as f:
-            return json.load(f)
-    except:
-        return {}
-
-def save_state(state):
-    os.makedirs(os.path.dirname(STATE_FILE), exist_ok=True)
-    with open(STATE_FILE, "w") as f:
-        json.dump(state, f)
-
 # ---------- SYSTEM HELPERS ----------
 def run(cmd):
     subprocess.run(cmd, capture_output=False)
@@ -61,35 +44,12 @@ def check_ydotool_service():
 def press_key(code, down=True):
     run(["ydotool", "key", f"{code}:{1 if down else 0}"])
 
-def toggle_modifier_key(name):
-    code = MODIFIER_KEYS.get(name)
-    if code is None:
-        sys.exit(f"[ERROR] Not toggleable: {name}")
-
-    state = load_state()
-    pressed = state.get(name, False)
-
-    # Toggle
-    state[name] = not pressed
-    save_state(state)
-
-    print(f"[INFO] {name} {'DOWN' if state[name] else 'UP'}")
-
 def apply_layout(key, layout):
     return AZERTY_TO_QWERTY.get(key.lower(), key) if layout == "azerty" else key
 
 # ---------- SEND KEY ----------
 def send_key(layout, key, modifiers):
     _key = apply_layout(key, layout)
-
-    # Auto-apply toggled modifiers
-    if not modifiers:
-        active = [k for k, v in load_state().items() if v]
-        if active:
-            send_key(key, active)
-            for m in active:
-                toggle_modifier_key(m)
-            return
 
     # Press modifiers
     for m in modifiers:
@@ -105,7 +65,7 @@ def send_key(layout, key, modifiers):
         # Regular text
         run(["ydotool", "type", _key])
 
-    print(f"Text sent: {_key}")
+    print(f"Sent: {' '.join(modifiers)} {_key}")
 
     # Release modifiers
     for m in reversed(modifiers):
@@ -114,13 +74,10 @@ def send_key(layout, key, modifiers):
 
 # ---------- RESET ----------
 def reset():
-    state = load_state()
 
     # Release all toggled modifiers
-    for key, pressed in state.items():
-        if pressed:
-            toggle_modifier_key(key)
-            press_key(MODIFIER_KEYS[key], False)
+    for key, value in MODIFIER_KEYS.items():
+        press_key(value, False)
 
     # Reset CapsLock LED if needed
     caps_paths = glob.glob("/sys/class/leds/input*::capslock/brightness")
@@ -134,7 +91,7 @@ def reset():
 
 # ---------- MAIN ----------
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
+    if len(sys.argv) < 3:
         print("Usage: python type-key.py <layout> <key_or_text> [modifiers...]")
         sys.exit(1)
 
