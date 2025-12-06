@@ -47,7 +47,7 @@ Loader {
 
 
     active: pluginApi ? root.pluginApi.pluginSettings.enabled || pluginApi.manifest.metadata.defaultSettings.enabled || false : false
-
+    
     Component.onCompleted: {Settings.data.floatingPanel.clicking = false}
 
     property var qwerty: [
@@ -390,6 +390,11 @@ Loader {
                                                     runScript.command = ["python", root.typeKeyScript].concat(ks);
                                                     runScript.running = true;
                                                 }
+                                                stdout: StdioCollector {
+                                                    onStreamFinished: {
+                                                        Settings.data.floatingPanel.clicking = false
+                                                    }
+                                                }
                                                 stderr: StdioCollector {
                                                     onStreamFinished: {
                                                         if (text) Logger.w(text.trim());
@@ -423,7 +428,6 @@ Loader {
                                                     Logger.d(modelData.key.toString())
                                                 }
                                                 onReleased: {
-                                                    Settings.data.floatingPanel.clicking = false
                                                     if (!(modelData.key in root.activeModifiers)) {
                                                         root.keyArray = []
                                                         root.activeModifiers = {"shift": false, "alt": false, "super": false, "ctrl": false}
