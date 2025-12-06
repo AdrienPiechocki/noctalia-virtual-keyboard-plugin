@@ -49,6 +49,10 @@ Loader {
 
     active: pluginApi ? root.pluginApi.pluginSettings.enabled || pluginApi.manifest.metadata.defaultSettings.enabled || false : false
     
+    Component.onCompleted: {
+        Settings.data.floatingPanel.giveFocus = false
+    }
+
     Timer {
         interval: 200; running: true; repeat: true
         onTriggered: {
@@ -57,23 +61,12 @@ Loader {
     }
 
     FolderListModel {
-        id: jsonModel
+        id: jsonFiles
         folder: "file://" + Settings.configDir + "plugins/virtual-keyboard/layouts/"
         nameFilters: ["*.json"]
     }
 
-    function readJson(url) {
-        var xhr = new XMLHttpRequest()
-        xhr.open("GET", url, false)
-        xhr.send()
-        return JSON.parse(xhr.responseText)
-    }
-
     property var layouts: {}
-
-    Component.onCompleted: {
-        Settings.data.floatingPanel.giveFocus = false
-    }
 
     Repeater {
         model: jsonFiles
