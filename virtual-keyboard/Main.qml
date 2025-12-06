@@ -391,7 +391,7 @@ Loader {
                                                 }
                                                 stdout: StdioCollector {
                                                     onStreamFinished: {
-                                                        Settings.data.floatingPanel.givefocus = false
+                                                        Settings.data.floatingPanel.giveFocus = false
                                                     }
                                                 }
                                                 stderr: StdioCollector {
@@ -409,7 +409,7 @@ Loader {
                                                         toggleModifier(modelData.key)
                                                     }
                                                     else{
-                                                        Settings.data.floatingPanel.givefocus = true
+                                                        Settings.data.floatingPanel.giveFocus = true
                                                         pluginApi.saveSettings();
                                                         if (modelData.key === "caps") {
                                                             root.capsON = !root.capsON
