@@ -58,7 +58,7 @@ Loader {
 
     FolderListModel {
         id: jsonModel
-        folder: Qt.resolvedUrl(Settings.configDir + "plugins/virtual-keyboard/layouts/")   // ton dossier layouts
+        folder: "file://" + Settings.configDir + "plugins/virtual-keyboard/layouts/"
         nameFilters: ["*.json"]
     }
 
@@ -73,7 +73,7 @@ Loader {
 
     Component.onCompleted: {
         Settings.data.floatingPanel.giveFocus = false
-        Logger.i("Keyboard", "found ", jsonModel.count, " layouts")
+        Logger.i("Keyboard", "found", jsonModel.count, "layouts")
         for (let i = 0; i < jsonModel.count; i++) {
             let url = Qt.resolvedUrl(i)
             let json = readJson(url)
