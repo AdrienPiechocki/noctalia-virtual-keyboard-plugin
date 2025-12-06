@@ -47,14 +47,7 @@ Loader {
 
 
     active: pluginApi ? root.pluginApi.pluginSettings.enabled || pluginApi.manifest.metadata.defaultSettings.enabled || false : false
-    
-    Timer {
-        interval: 200; running: true; repeat: true
-        onTriggered: {
-            Settings.data.floatingPanel.enabled = root.active
-            Settings.data.floatingPanel.clicking = root.pluginApi.pluginSettings.clicking
-        }
-    }
+    Component.onCompleted: {Settings.data.floatingPanel.enabled = root.active}
     
     property var qwerty: [
     // line 1
@@ -389,7 +382,7 @@ Loader {
                                                 }
                                                 stdout: StdioCollector {
                                                     onStreamFinished: {
-                                                        root.pluginApi.pluginSettings.clicking = false
+                                                        Settings.data.floatingPanel.clicking = false
                                                         pluginApi.saveSettings();
                                                     }
                                                 }
@@ -408,7 +401,7 @@ Loader {
                                                         toggleModifier(modelData.key)
                                                     }
                                                     else{
-                                                        root.pluginApi.pluginSettings.clicking = true
+                                                        Settings.data.floatingPanel.clicking = true
                                                         pluginApi.saveSettings();
                                                         if (modelData.key === "caps") {
                                                             root.capsON = !root.capsON
