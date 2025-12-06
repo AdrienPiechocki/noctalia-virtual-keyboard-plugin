@@ -51,7 +51,6 @@ Loader {
     
     Component.onCompleted: {
         Settings.data.floatingPanel.giveFocus = false
-        pluginApi.saveSettings()
     }
 
     Timer {
@@ -89,7 +88,7 @@ Loader {
                         if (pluginApi) {
                             for (let i = 0; i < layouts.length; i ++) {
                                 for (let layout in layouts[i]) {
-                                    if (pluginApi.pluginSettings.layout == layout) {
+                                    if (pluginApi.pluginSettings.layout == layout || pluginApi.manifest.metadata.defaultSettings.layout == layout) {
                                         console.log(layouts[i][layout])
                                         currentLayout = layouts[i][layout]
                                     }
