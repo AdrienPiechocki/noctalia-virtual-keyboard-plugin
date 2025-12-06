@@ -68,7 +68,9 @@ Loader {
 
     property var layouts: []
 
-    property var currentLayout: {
+    property var currentLayout: setLayout()
+
+    function setLayout() {
         if (pluginApi) {
             console.log("1")
             for (let i = 0; i < layouts.length; i ++) {
@@ -84,6 +86,7 @@ Loader {
                     }
                 }
             }
+            setLayout()
         }
     }
 
