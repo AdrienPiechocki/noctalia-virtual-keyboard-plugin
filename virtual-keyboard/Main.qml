@@ -75,18 +75,27 @@ Loader {
         Settings.data.floatingPanel.giveFocus = false
     }
 
-    Timer {
-        interval: 1000; running: true; repeat: false
-        onTriggered: {
-            Logger.i("Keyboard", "found", jsonModel.count, "layouts in", jsonModel.folder)
-            for (let i = 0; i < jsonModel.count; i++) {
-                let url = jsonModel.get(i, "fileURL")
-                let json = readJson(url)
-                layouts[url] = json.layout
-                Logger.i("Keyboard", "Registered layout ", url)
+    Repeater {
+        model: jsonFiles
+
+        FileView {
+            id: loader
+            path: model.filePath
+
+            onChanged: {
+                if (!exists)
+                    return
+
+                try {
+                    let data = JSON.parse(text)
+                    layouts[model.fileName] = data.layout
+                } catch(e) {
+                    console.error("JSON Error in", model.fileName, ":", e)
+                }
             }
         }
     }
+
 
     property var layout: {
         if (layouts !== {}) {
