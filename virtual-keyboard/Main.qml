@@ -58,7 +58,7 @@ Loader {
 
     FolderListModel {
         id: jsonModel
-        folder: "file://" + Settings.configDir + "plugins/virtual-keyboard/layouts/"
+        folder: "file:///home/adrien/.config/noctalia/plugins/virtual-keyboard/layouts"
         nameFilters: ["*.json"]
     }
 
