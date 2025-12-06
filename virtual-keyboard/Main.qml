@@ -81,7 +81,8 @@ Loader {
                 onLoaded: {
                     try {
                         let data = JSON.parse(text())
-                        layouts.push({model.fileName: data.layout})
+                        let name = model.fileName.slice(0, -5)
+                        layouts.push({name: data.layout})
                     } catch(e) {
                         console.error("JSON Error in", model.fileName, ":", e)
                     }
