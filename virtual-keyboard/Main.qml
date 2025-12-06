@@ -47,7 +47,6 @@ Loader {
 
 
     active: pluginApi ? root.pluginApi.pluginSettings.enabled || pluginApi.manifest.metadata.defaultSettings.enabled || false : false
-    Component.onCompleted: {Settings.data.floatingPanel.enabled = root.active}
     
     property var qwerty: [
     // line 1
@@ -204,6 +203,15 @@ Loader {
                             }
                             y = 0
                         }
+
+                        MouseArea {
+                            id: hover
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            onEntered: {Settings.data.floatingPanel.enabled = true}
+                            onExited: {Settings.data.floatingPanel.enabled = false}
+                        }
+
                         NBox {
                             id: closeButton
                             width: 50
