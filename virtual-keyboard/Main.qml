@@ -66,7 +66,7 @@ Loader {
         nameFilters: ["*.json"]
     }
 
-    property var layouts: {}
+    property var layouts: []
 
     Repeater {
         model: jsonFiles
@@ -81,10 +81,7 @@ Loader {
                 onLoaded: {
                     try {
                         let data = JSON.parse(text())
-                        console.log(data, data.layout, model.fileName)
-                        let newLayouts = layouts
-                        newLayouts[model.fileName] = data.layout
-                        layouts = newLayouts
+                        layouts.push({model.fileName: data.layout})
                     } catch(e) {
                         console.error("JSON Error in", model.fileName, ":", e)
                     }
