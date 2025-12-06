@@ -171,8 +171,8 @@ Loader {
                         right: true
                     }
                     margins {
-                        left: background.width * 30/100 - screen.x
-                        right: background.width * 30/100 + screen.x
+                        left: background.width * 29.8/100 - screen.x
+                        right: background.width * 29.8/100 + screen.x
                         top: background.height * 54/100 - screen.y
                         bottom: background.height * 54/100 + screen.y
                     }
