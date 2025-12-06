@@ -47,7 +47,9 @@ Loader {
 
 
     active: pluginApi ? root.pluginApi.pluginSettings.enabled || pluginApi.manifest.metadata.defaultSettings.enabled || false : false
-    
+
+    Component.onCompleted: {Settings.data.floatingPanel.clicking = false}
+
     property var qwerty: [
     // line 1
     [
