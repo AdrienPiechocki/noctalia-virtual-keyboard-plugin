@@ -84,7 +84,7 @@ Loader {
                         let name = model.fileName.slice(0, -5)
                         layouts.push({name: data.layout})
                     } catch(e) {
-                        console.error("JSON Error in", model.fileName, ":", e)
+                        Logger.e("Keyboard", "JSON Error in", model.fileName, ":", e)
                     }
                 }
             }
@@ -92,7 +92,7 @@ Loader {
     }
 
     property var currentLayout: {
-        if (layouts !== {}) {
+        if (layouts !== []) {
             if (pluginApi) {
                 if (pluginApi.pluginSettings.layout === "auto") {
                     return KeyboardLayoutService.currentLayout === "fr" ? layouts.azerty : layouts.qwerty
