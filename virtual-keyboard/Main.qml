@@ -49,8 +49,6 @@ Loader {
 
     active: pluginApi ? root.pluginApi.pluginSettings.enabled || pluginApi.manifest.metadata.defaultSettings.enabled || false : false
     
-    Component.onCompleted: {Settings.data.floatingPanel.giveFocus = false}
-
     Timer {
         interval: 200; running: true; repeat: true
         onTriggered: {
@@ -74,6 +72,7 @@ Loader {
     property var layouts: {}
 
     Component.onCompleted: {
+        Settings.data.floatingPanel.giveFocus = false
         Logger.i("Keyboard", "found ", jsonModel.count, " layouts")
         for (let i = 0; i < jsonModel.count; i++) {
             let url = Qt.resolvedUrl(i)
