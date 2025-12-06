@@ -36,8 +36,10 @@ ColumnLayout {
             "key": "azerty",
             "name": pluginApi?.tr("options.layout.azerty")
             },
+            {
             "key": "dvorak",
             "name": pluginApi?.tr("options.layout.dvorak")
+            }
         ]
         currentKey: root.valueLayout
         onSelected: key => root.valueLayout = key
