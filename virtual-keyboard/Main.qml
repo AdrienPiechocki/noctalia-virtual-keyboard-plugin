@@ -68,6 +68,8 @@ Loader {
 
     property var layouts: []
 
+    property var currentLayout
+
     Repeater {
         model: jsonFiles
 
@@ -83,6 +85,26 @@ Loader {
                         let data = JSON.parse(text())
                         let name = model.fileName.slice(0, -5)
                         layouts.push({name: data.layout})
+
+                        if (layouts !== []) {
+                            if (pluginApi) {
+                                for (let i = 0; i < layouts.count; i ++) {
+                                    for (let layout in layouts[i]) {
+                                        console.log(layout, layouts[i])
+                                        if (pluginApi.pluginSettings.layout === layout) {
+                                            currentLayout = layouts[i][layout]
+                                        }
+                                    }
+                                }
+                                currentLayout = {}
+                            }
+                            else {
+                                currentLayout = {}
+                            }
+                        }
+                        else {
+                            currentLayout = {}
+                        }
                     } catch(e) {
                         Logger.e("Keyboard", "JSON Error in", model.fileName, ":", e)
                     }
@@ -91,27 +113,6 @@ Loader {
         }
     }
 
-    property var currentLayout: {
-        if (layouts !== []) {
-            if (pluginApi) {
-                for (let i = 0; i < layouts.count; i ++) {
-                    for (let layout in layouts[i]) {
-                        console.log(layout, layouts[i])
-                        if (pluginApi.pluginSettings.layout === layout) {
-                            currentLayout = layouts[i][layout]
-                        }
-                    }
-                }
-                currentLayout = {}
-            }
-            else {
-                currentLayout = {}
-            }
-        }
-        else {
-            currentLayout = {}
-        }
-    }
 
     property var activeModifiers: {"shift": false, "alt": false, "super": false, "ctrl": false}
 
